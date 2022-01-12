@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserServiceImpl implements com.egorbahar.service.UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
