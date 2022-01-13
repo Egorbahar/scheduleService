@@ -3,6 +3,7 @@ package com.egorbahar.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "schedule")
@@ -11,13 +12,17 @@ public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private LocalDateTime startTime;
     @OneToOne
-    private Candidate candidate;
+    @JoinColumn(name = "category_id")
+    private Category category;
     @OneToOne
-    private Employee employee;
+    @JoinColumn(name = "recruiter_id")
+    private Recruiter recruiter;
     @OneToOne
-    private Vacancy vacancy;
+    @JoinColumn(name = "engineer_id")
+    private Engineer engineer;
     @OneToOne
-    private Interview interview;
+    @JoinColumn(name = "candidate_vacancy_id")
+    private CandidateVacancy candidateVacancy;
 }

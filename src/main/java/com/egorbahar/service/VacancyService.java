@@ -1,10 +1,10 @@
 package com.egorbahar.service;
 
-import com.egorbahar.entity.Company;
 import com.egorbahar.entity.Vacancy;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface VacancyService {
     void save(Vacancy vacancy);
 

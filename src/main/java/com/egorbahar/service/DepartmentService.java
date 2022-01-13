@@ -1,9 +1,10 @@
 package com.egorbahar.service;
 
 import com.egorbahar.entity.Department;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface DepartmentService {
     void save(Department department);
 

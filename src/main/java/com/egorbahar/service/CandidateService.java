@@ -1,9 +1,10 @@
 package com.egorbahar.service;
 
 import com.egorbahar.entity.Candidate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface CandidateService {
     void save(Candidate candidate);
 

@@ -1,9 +1,10 @@
 package com.egorbahar.service;
 
 import com.egorbahar.entity.Schedule;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface ScheduleService {
     void save(Schedule schedule);
 

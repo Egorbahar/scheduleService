@@ -1,9 +1,10 @@
 package com.egorbahar.service;
 
 import com.egorbahar.entity.Company;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface CompanyService {
     void save(Company company);
 

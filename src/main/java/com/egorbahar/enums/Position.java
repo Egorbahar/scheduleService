@@ -1,0 +1,10 @@
+package com.egorbahar.enums;
+
+public enum Position {
+    JUNIOR_JAVA_DEVELOPER,
+    MIDDLE_JAVA_DEVELOPER,
+    SENIOR_JAVA_DEVELOPER,
+    JUNIOR_NET_DEVELOPER,
+    MIDDLE_NET_DEVELOPER,
+    SENIOR_NET_DEVELOPER
+}

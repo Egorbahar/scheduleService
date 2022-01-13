@@ -1,17 +1,17 @@
 package com.egorbahar.entity;
+
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "roles")
 @Data
-public class Role {
+@Table(name = "recruiter")
+@PrimaryKeyJoinColumn(name = "user_id")
+public class Recruiter extends User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name")
-    private String name;
 }

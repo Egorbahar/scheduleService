@@ -1,5 +1,6 @@
 package com.egorbahar.entity;
 
+import com.egorbahar.enums.Position;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -7,7 +8,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,15 +22,11 @@ public class Vacancy {
     private String name;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
-    @NotNull
-    @Size(min = 3, max = 50, message = "{vacancy.position.size}")
-    private String position;
-    @ManyToMany
-    @JoinTable(name = "candidate_vacancy",
-            joinColumns = @JoinColumn(name = "vacancy_id"),
-            inverseJoinColumns = @JoinColumn(name = "candidate_id"))
-    private Set<Candidate> candidates;
+    @Enumerated(EnumType.STRING)
+    private Position position;
+    @OneToMany(mappedBy = "vacancy", fetch = FetchType.LAZY)
+    private Set<CandidateVacancy> candidateVacancies;
     @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="vacancy_id")
+    @JoinColumn (name="department_id")
     private Department department;
 }

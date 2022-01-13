@@ -17,15 +17,11 @@ public class Candidate {
     private String name;
     @Size(min=5, message = "Не меньше 5 знаков")
     private String surname;
-    @ManyToMany
-    @JoinTable(name = "candidate_vacancy",
-            joinColumns = @JoinColumn(name = "candidate_id"),
-            inverseJoinColumns = @JoinColumn(name = "vacancy_id")) //one to one переделать
-    private Set<Vacancy> vacancies;
-    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="candidate_id", insertable = false, updatable = false)
+    @Size(min=5, message = "Не меньше 5 знаков")
+    private String email;
+    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    private Set<CandidateVacancy> candidateVacancies;
+    @OneToOne
+    @JoinColumn(name = "company_id")
     private Company company;
-    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="candidate_id")
-    private Employee employee;
 }
