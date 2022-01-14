@@ -5,9 +5,11 @@ import com.egorbahar.entity.Company;
 import com.egorbahar.repository.CompanyRepository;
 import com.egorbahar.service.CompanyService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 @AllArgsConstructor
 public class CompanyServiceImpl implements CompanyService {
     private final CompanyRepository companyRepository;
@@ -25,7 +27,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company update(Company company) {
-       // findById(company.getId());
+        findById(company.getId());
         return companyRepository.saveAndFlush(company);
     }
 
@@ -36,6 +38,6 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company findById(Long id) {
-        return companyRepository.findById(id).orElseThrow(()->new RuntimeException(messageSource.getMessage("error.company.notExist", new Object[]{})));
+        return companyRepository.findById(id).orElseThrow(() -> new RuntimeException(messageSource.getMessage("error.company.notExist", new Object[]{})));
     }
 }

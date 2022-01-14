@@ -1,6 +1,7 @@
 package com.egorbahar.config;
 
 import com.egorbahar.dto.response.ErrorResponseDto;
+import com.egorbahar.exceptions.EntityExistenceException;
 import com.egorbahar.exceptions.TokenRefreshException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -51,5 +52,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ResponseEntity<Object> handleTokenRefreshException(TokenRefreshException exception, WebRequest request) {
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(HttpStatus.FORBIDDEN,exception.getMessage());
+        return handleExceptionInternal(exception,errorResponseDto,new HttpHeaders(),errorResponseDto.getHttpStatus(),request);    }
+
+        @ExceptionHandler(value = EntityExistenceException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<Object> handleEntityExistenceException(EntityExistenceException exception, WebRequest request) {
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(HttpStatus.INTERNAL_SERVER_ERROR,exception.getMessage());
         return handleExceptionInternal(exception,errorResponseDto,new HttpHeaders(),errorResponseDto.getHttpStatus(),request);    }
 }

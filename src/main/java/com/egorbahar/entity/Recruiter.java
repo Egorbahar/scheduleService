@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -14,4 +15,6 @@ public class Recruiter extends User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    private String phoneNumber;
 }
