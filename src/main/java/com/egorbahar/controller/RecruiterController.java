@@ -1,12 +1,12 @@
 package com.egorbahar.controller;
 
-import com.egorbahar.dto.request.recruiterRequestDto;
-import com.egorbahar.dto.response.recruiterResponseDto;
+import com.egorbahar.dto.request.RecruiterRequestDto;
+import com.egorbahar.dto.response.RecruiterResponseDto;
 import com.egorbahar.entity.Recruiter;
-import com.egorbahar.entity.recruiter;
-import com.egorbahar.mapper.recruiterMapper;
+import com.egorbahar.entity.Recruiter;
+import com.egorbahar.mapper.RecruiterMapper;
 import com.egorbahar.service.RecruiterService;
-import com.egorbahar.service.recruiterService;
+import com.egorbahar.service.RecruiterService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

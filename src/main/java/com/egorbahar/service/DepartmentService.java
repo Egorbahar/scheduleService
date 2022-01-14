@@ -15,4 +15,6 @@ public interface DepartmentService {
     List<Department> findAll();
 
     Department findById(Long id);
+
+    Department findByName(String name);
 }

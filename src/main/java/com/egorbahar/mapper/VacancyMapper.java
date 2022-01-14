@@ -12,7 +12,9 @@ import java.util.List;
 public interface VacancyMapper {
     VacancyResponseDto toVacancyResponseDto(Vacancy vacancy);
 
-    @Mapping(target = "id", ignore = true)
+    @Mapping(source ="vacancyRequestDto.name" , target = "name")
+    @Mapping(target = "date" , ignore = true)
+    @Mapping(target = "position" , ignore = true)
     Vacancy toVacancy(VacancyRequestDto vacancyRequestDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

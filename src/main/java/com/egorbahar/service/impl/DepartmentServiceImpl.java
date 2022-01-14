@@ -41,4 +41,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department findById(Long id) {
         return departmentRepository.findById(id).orElseThrow(() -> new RuntimeException(messageSource.getMessage("error.department.notExist", new Object[]{})));
     }
+
+    @Override
+    public Department findByName(String name) {
+        return departmentRepository.findByName(name);
+    }
 }
