@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface DepartmentService {
-    void save(Department department);
+    Department save(Department department);
 
     void deleteById(Long id);
 

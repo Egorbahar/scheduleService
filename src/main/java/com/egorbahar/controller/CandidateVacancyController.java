@@ -1,9 +1,11 @@
 package com.egorbahar.controller;
 
 import com.egorbahar.dto.request.CandidateVacancyRequestDto;
+import com.egorbahar.dto.request.CandidateVacancyRequestDto;
+import com.egorbahar.dto.response.CandidateVacancyResponseDto;
 import com.egorbahar.dto.response.CandidateVacancyResponseDto;
 import com.egorbahar.entity.CandidateVacancy;
-import com.egorbahar.entity.Company;
+import com.egorbahar.entity.CandidateVacancy;
 import com.egorbahar.mapper.CandidateVacancyMapper;
 import com.egorbahar.service.CandidateVacancyService;
 import lombok.AllArgsConstructor;
@@ -41,9 +43,9 @@ public class CandidateVacancyController {
     }
 
     @PostMapping
-    public void save(@Valid @RequestBody CandidateVacancyRequestDto candidateVacancyRequestDto) {
-        CandidateVacancy candidateVacancy = candidateVacancyMapper.toCandidateVacancy(candidateVacancyRequestDto);
-        candidateVacancyService.save(candidateVacancy);
+    public ResponseEntity<CandidateVacancyResponseDto> save(@Valid @RequestBody CandidateVacancyRequestDto candidateVacancyRequestDto) {
+        CandidateVacancyResponseDto candidateVacancyResponseDto = candidateVacancyMapper.toCandidateVacancyResponseDto(candidateVacancyService.save(candidateVacancyMapper.toCandidateVacancy(candidateVacancyRequestDto)));
+        return new ResponseEntity<>(candidateVacancyResponseDto,HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

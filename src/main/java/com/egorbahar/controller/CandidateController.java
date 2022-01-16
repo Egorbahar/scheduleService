@@ -59,7 +59,7 @@ public class CandidateController {
     }
 
     @PostMapping
-    public void save(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
+    public ResponseEntity<CandidateResponseDto> save(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
         Company company = new Company();
         company.setName(candidateRequestDto.getCompanyName());
         if (company.getName() != null) {
@@ -68,11 +68,12 @@ public class CandidateController {
             candidate.setCompany(company);
             candidateService.save(candidate);
         } else {
-            Candidate candidate = candidateMapper.toCandidate(candidateRequestDto);
-            candidateService.save(candidate);
+            CandidateResponseDto candidateResponseDto = candidateMapper.toCandidateResponseDto(candidateService.save(candidateMapper.toCandidate(candidateRequestDto)));
+            return new ResponseEntity<>(candidateResponseDto, HttpStatus.OK);
         }
-
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<CandidateResponseDto> update(@PathVariable("id") @NotBlank @Positive Long id, @Valid @RequestBody CandidateRequestDto candidateRequestDto) {

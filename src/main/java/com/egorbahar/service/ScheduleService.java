@@ -5,7 +5,7 @@ import com.egorbahar.entity.Schedule;
 import java.util.List;
 
 public interface ScheduleService {
-    void save(Schedule schedule);
+    Schedule save(Schedule schedule);
 
     void deleteById(Long id);
 

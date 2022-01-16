@@ -36,12 +36,12 @@ public class RecruiterController {
         return new ResponseEntity<>(recruiterResponseDto, HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<RecruiterResponseDto> save(@Valid @RequestBody RecruiterRequestDto recruiterRequestDto) {
-        recruiterRequestDto.setId(null);
         final RecruiterResponseDto recruiterResponseDto = recruiterMapper.toRecruiterResponseDto(recruiterService.save(recruiterMapper.toRecruiter(recruiterRequestDto)));
         return new ResponseEntity<>(recruiterResponseDto, HttpStatus.OK);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         recruiterService.deleteById(id);

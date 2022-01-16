@@ -2,6 +2,7 @@ package com.egorbahar.controller;
 
 import com.egorbahar.dto.request.ScheduleRequestDto;
 import com.egorbahar.dto.response.ScheduleResponseDto;
+import com.egorbahar.dto.response.ScheduleResponseDto;
 import com.egorbahar.entity.Schedule;
 import com.egorbahar.mapper.ScheduleMapper;
 import com.egorbahar.service.ScheduleService;
@@ -45,14 +46,15 @@ public class ScheduleController {
     }
 
     @PostMapping
-    public void save(@Valid @RequestBody ScheduleRequestDto scheduleRequestDto) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "MM.dd.yyyy" );
+    public ResponseEntity<ScheduleResponseDto> save(@Valid @RequestBody ScheduleRequestDto scheduleRequestDto) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM.dd.yyyy");
         LocalDate localDate = LocalDate.parse(scheduleRequestDto.getDate(), formatter );
         LocalTime localTime = LocalTime.parse(scheduleRequestDto.getTime());
         LocalDateTime localDateTime = LocalDateTime.of(localDate,localTime);
         Schedule schedule = scheduleMapper.toSchedule(scheduleRequestDto);
         schedule.setStartTime(localDateTime);
-        scheduleService.save(schedule);
+        final ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(scheduleService.save(scheduleMapper.toSchedule(scheduleRequestDto)));
+        return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

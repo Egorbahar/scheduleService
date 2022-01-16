@@ -1,6 +1,5 @@
 package com.egorbahar.dto.response;
 
-import com.egorbahar.entity.Department;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;

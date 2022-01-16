@@ -5,7 +5,7 @@ import com.egorbahar.entity.Vacancy;
 import java.util.List;
 
 public interface VacancyService {
-    void save(Vacancy vacancy);
+    Vacancy save(Vacancy vacancy);
 
     void deleteById(Long id);
 

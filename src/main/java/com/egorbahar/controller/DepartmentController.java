@@ -3,6 +3,7 @@ package com.egorbahar.controller;
 import com.egorbahar.dto.request.DepartmentRequestDto;
 import com.egorbahar.dto.request.VacancyRequestDto;
 import com.egorbahar.dto.response.DepartmentResponseDto;
+import com.egorbahar.dto.response.EngineerResponseDto;
 import com.egorbahar.entity.Department;
 import com.egorbahar.entity.Vacancy;
 import com.egorbahar.mapper.DepartmentMapper;
@@ -42,11 +43,11 @@ public class DepartmentController {
         departmentService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PostMapping
-    public void save(@Valid @RequestBody DepartmentRequestDto departmentRequestDto)
-    {
-        Department department = departmentMapper.toDepartment(departmentRequestDto);
-        departmentService.save(department);
+    public ResponseEntity<DepartmentResponseDto> save(@Valid @RequestBody DepartmentRequestDto departmentRequestDto) {
+        DepartmentResponseDto departmentResponseDto = departmentMapper.toDepartmentResponseDto(departmentService.save(departmentMapper.toDepartment(departmentRequestDto)));
+        return new ResponseEntity<>(departmentResponseDto,HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

@@ -17,8 +17,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     private final LocalMessageSource messageSource;
 
     @Override
-    public void save(Department department) {
-        departmentRepository.save(department);
+    public Department save(Department department) {
+        return departmentRepository.save(department);
     }
 
     @Override

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public interface CompanyService {
-    void save(Company company);
+    Company save(Company company);
 
     void deleteById(Long id);
 

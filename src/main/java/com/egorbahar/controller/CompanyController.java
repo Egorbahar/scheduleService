@@ -1,7 +1,9 @@
 package com.egorbahar.controller;
 
 import com.egorbahar.dto.request.CompanyRequestDto;
+import com.egorbahar.dto.request.CompanyRequestDto;
 import com.egorbahar.dto.request.ScheduleRequestDto;
+import com.egorbahar.dto.response.CompanyResponseDto;
 import com.egorbahar.dto.response.CompanyResponseDto;
 import com.egorbahar.entity.Company;
 import com.egorbahar.entity.Company;
@@ -43,8 +45,9 @@ public class CompanyController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PostMapping
-    public void save(@Valid @RequestBody CompanyRequestDto companyRequestDto)
-    {
+    public ResponseEntity<CompanyResponseDto> save(@Valid @RequestBody CompanyRequestDto companyRequestDto) {
+        CompanyResponseDto companyResponseDto = companyMapper.toCompanyResponseDto(companyService.save(companyMapper.toCompany(companyRequestDto)));
+        return new ResponseEntity<>(companyResponseDto,HttpStatus.OK);
     }
     @PutMapping("/{id}")
     public ResponseEntity<CompanyResponseDto> update(@PathVariable("id") @NotBlank @Positive Long id, @Valid @RequestBody CompanyRequestDto companyRequestDto) {

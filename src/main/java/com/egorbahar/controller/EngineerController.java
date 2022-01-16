@@ -33,10 +33,17 @@ public class EngineerController {
         EngineerResponseDto engineerResponseDto = engineerMapper.toEngineerResponseDto(engineerService.findById(id));
         return new ResponseEntity<>(engineerResponseDto, HttpStatus.OK);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         engineerService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<EngineerResponseDto> save(@Valid @RequestBody EngineerRequestDto engineerRequestDto) {
+        final EngineerResponseDto engineerResponseDto = engineerMapper.toEngineerResponseDto(engineerService.save(engineerMapper.toEngineer(engineerRequestDto)));
+        return new ResponseEntity<>(engineerResponseDto, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CandidateVacancyService {
 
-    void save(CandidateVacancy candidateVacancy);
+    CandidateVacancy save(CandidateVacancy candidateVacancy);
 
     void deleteById(Long id);
 
