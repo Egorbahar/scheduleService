@@ -10,7 +10,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface DepartmentMapper {
-
+    @Mapping(target = "id" , source = "id")
+    @Mapping(target = "name" , source = "name")
     DepartmentResponseDto toDepartmentResponseDto(Department department);
 
     @Mapping(source = "departmentRequestDto.name" , target = "name")

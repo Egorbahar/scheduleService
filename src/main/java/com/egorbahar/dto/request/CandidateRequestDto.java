@@ -1,5 +1,20 @@
 package com.egorbahar.dto.request;
 
-public class CandidateRequestDto {
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
+@Getter
+@Setter
+public class CandidateRequestDto {
+    @NotNull
+    private String name;
+    @NotNull
+    private String surname;
+    @NotNull
+    private String email;
+    private String companyName;
+    private List<Long> vacancy_id;
 }

@@ -10,17 +10,23 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface VacancyMapper {
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "vacancy.department.name" , target = "department")
     VacancyResponseDto toVacancyResponseDto(Vacancy vacancy);
 
-    @Mapping(source ="vacancyRequestDto.name" , target = "name")
-    @Mapping(target = "date" , ignore = true)
-    @Mapping(target = "position" , ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(source = "vacancyRequestDto.name", target = "name")
+    @Mapping(target = "date", ignore = true)
+    @Mapping(target = "position", ignore = true)
     Vacancy toVacancy(VacancyRequestDto vacancyRequestDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     void updateEntity(@MappingTarget Vacancy vacancy, VacancyRequestDto vacancyDto);
 
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "vacancies.department.name" , target = "department")
     @IterableMapping(elementTargetType = VacancyResponseDto.class)
     List<VacancyResponseDto> toVacancyResponseDtoList(Collection<Vacancy> vacancies);
 }

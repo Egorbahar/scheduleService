@@ -10,9 +10,14 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "name" , source = "name")
+    @Mapping(target = "duration", source = "duration")
     CategoryResponseDto toCategoryResponseDto(Category category);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "name" , source = "name")
+    @Mapping(target = "duration", source = "duration")
     Category toCategory(CategoryRequestDto categoryRequestDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

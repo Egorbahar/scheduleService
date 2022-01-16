@@ -13,6 +13,7 @@ public interface ScheduleMapper {
     ScheduleResponseDto toScheduleResponseDto(Schedule schedule);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "startTime" , ignore = true)
     Schedule toSchedule(ScheduleRequestDto scheduleRequestDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

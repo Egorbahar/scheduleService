@@ -1,12 +1,17 @@
 package com.egorbahar.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "candidate_vacancy")
 public class CandidateVacancy {
     @Id
@@ -22,4 +27,9 @@ public class CandidateVacancy {
     @NotNull
     @JoinColumn(name = "vacancy_id", nullable = false)
     private Vacancy vacancy;
+
+    public CandidateVacancy(@NotNull Candidate candidate, @NotNull Vacancy vacancy) {
+        this.candidate = candidate;
+        this.vacancy = vacancy;
+    }
 }

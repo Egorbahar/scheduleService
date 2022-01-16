@@ -40,6 +40,12 @@ public class CategoryController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PostMapping
+    public void save(@Valid @RequestBody CategoryRequestDto candidateRequestDto) {
+        Category category = categoryMapper.toCategory(candidateRequestDto);
+        categoryService.save(category);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<CategoryResponseDto> update(@PathVariable("id") @NotBlank @Positive Long id, @Valid @RequestBody CategoryRequestDto categoryRequestDto) {
         Category category = categoryMapper.toCategory(categoryRequestDto);

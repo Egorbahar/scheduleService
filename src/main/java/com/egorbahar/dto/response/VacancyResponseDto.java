@@ -1,19 +1,19 @@
 package com.egorbahar.dto.response;
 
 import com.egorbahar.entity.Department;
-import com.egorbahar.enums.Position;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 @Data
 public class VacancyResponseDto {
+    private Long id;
     @NotNull
     private String name;
     @NotNull
-    private Date date;
+    private LocalDateTime date;
     @NotNull
-    private Position position;
-    @NotNull
-    private Department department;
+    private String position;
+    private String department;
 }

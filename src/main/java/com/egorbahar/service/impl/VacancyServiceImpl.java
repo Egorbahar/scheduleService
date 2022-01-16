@@ -41,4 +41,10 @@ public class VacancyServiceImpl implements VacancyService {
     public Vacancy findById(Long id) {
         return vacancyRepository.findById(id).orElseThrow(()->new RuntimeException(messageSource.getMessage("error.vacancy.notExist", new Object[]{})));
     }
+
+    @Override
+    public List<Vacancy> findAllById(List<Long> longList) {
+        return vacancyRepository.findAllByIdIn(longList);
+    }
+
 }

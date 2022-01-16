@@ -2,6 +2,8 @@ package com.egorbahar.entity;
 
 import com.egorbahar.enums.Position;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,8 +15,9 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Data
-@Table(name = "vacancies")
+@Getter
+@Setter
+@Table(name = "vacancy")
 public class Vacancy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +30,7 @@ public class Vacancy {
     private Position position;
     @OneToMany(mappedBy = "vacancy", fetch = FetchType.LAZY)
     private Set<CandidateVacancy> candidateVacancies;
-    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn (name="department_id")
     private Department department;
 }

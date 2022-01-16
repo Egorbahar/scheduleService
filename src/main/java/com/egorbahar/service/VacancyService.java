@@ -14,4 +14,6 @@ public interface VacancyService {
     List<Vacancy> findAll();
 
     Vacancy findById(Long id);
+
+    List<Vacancy> findAllById(List<Long> longList);
 }
