@@ -16,8 +16,8 @@ public class RecruiterServiceImpl implements RecruiterService {
     private final LocalMessageSource messageSource;
 
     @Override
-    public void save(Recruiter recruiter) {
-        recruiterRepository.save(recruiter);
+    public Recruiter save(Recruiter recruiter) {
+        return recruiterRepository.save(recruiter);
     }
 
     @Override

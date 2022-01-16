@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface RecruiterService {
-    void save(Recruiter recruiter);
+    Recruiter save(Recruiter recruiter);
 
     void deleteById(Long id);
 

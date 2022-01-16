@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class AuthorizationRequestDto {
     @NotEmpty
-    private String userName;
+    private String username;
     @NotEmpty
     private String password;
 }

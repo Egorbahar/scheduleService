@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @Setter
 public class RegistrationRequestDto {
     @NotEmpty
-    private String userName;
+    private String username;
     @NotEmpty
     private String password;
 }

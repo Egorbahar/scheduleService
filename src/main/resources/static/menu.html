@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Главное меню</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/sign_out.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
+    <style>
+        #bth-maker, #bth-studcourse, #bth-tutor, #bth-type{
+            display: none;}
+    #bth-maker, #bth-studcourse, #bth-tutor, #bth-type, #bth-course, #bth-event{
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        /*height: 53px;*/
+        line-height: 3px;
+        color: #7FC7C2;
+        font-family: Open Sans;
+        width: 210px;
+        font-size: 23px;
+        font-weight: 100;
+        padding: 20px;
+        background-color: #EBFFF6;
+        border: solid #7FC7C2 1px;
+        text-decoration: none;
+        cursor: pointer;
+        text-align: center;
+        margin: 10px;
+    }
+
+
+
+    #bth-maker:hover, #bth-studcourse:hover, #bth-tutor:hover, #bth-type:hover, #bth-course:hover, #bth-event:hover {
+        background: #F0FF9B;
+        border: solid #EBFFF6 0;
+        -webkit-border-radius: 31px;
+        -moz-border-radius: 31px;
+        border-radius: 31px;
+        text-decoration: none;
+    }
+        .form-group{
+            padding: 30px;
+            margin: 20px;
+        }
+        img{
+            height: 100px;
+            width: 100px;
+            display: table-column;
+            background-color:  #EBFFF6;
+            margin: 40px;
+        }
+        button:hover img {
+            background: #F0FF9B;
+        }
+        img:hover{
+            background: #F0FF9B;
+        }
+        .navbar{
+            background-color: #7FC7C2;
+        }
+        .nav-item, .nav-link{
+            color: white;
+        }
+
+        .nav-link:hover{
+            color: #F0FF9B;
+        }
+
+        img#maker{
+            height: 100px;
+            width: 80px;
+            margin: 40px;
+        }
+        img#courses, img#types{
+           width: 120px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg  static-top">
+    <div class="container">
+        <a class="navbar-brand" style="color: white; size: 16px;">Планирование обеседований</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="navbar-text" id="hello">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/menu.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/" onclick="signOut()">Sign out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <form method="post" class="mt-5">
+        <div class="form-group" align="center">
+            <button type="button" id="bth-course"
+                    class="btn btn-primary btn-course" >Курсы
+                <img id="courses" src="courses.png"/>
+
+            </button>
+            <button type="button" id="bth-event"
+                    class="btn btn-primary btn-event">Мероприятия
+                <img src="events.png"/>
+            </button>
+            <button type="button" id="bth-studcourse"
+                    class="btn btn-primary btn-studcourse">Заявки
+                <img src="list.png"/>
+            </button>
+            <button type="button" id="bth-tutor"
+                    class="btn btn-primary btn-tutor">Преподаватели
+                <img src="teacher.png"/>
+            </button>
+            <button type="button" id="bth-maker"
+                    class="btn btn-primary btn-maker">Рекрутеры
+                <img id="maker" src="recruiters.png"/>
+            </button>
+            <button type="button" id="bth-type"
+                    class="btn btn-primary btn-type">Виды курсов
+                <img id="types" src="types.png"/>
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
