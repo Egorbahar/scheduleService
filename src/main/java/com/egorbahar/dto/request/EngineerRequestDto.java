@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EngineerRequestDto {
-    private Long id;
     private String name;
     private String surname;
     private String email;
     private String username;
     private String password;
-    private String phoneNumber;
+    private String position;
+    private Long departmentId;
 }

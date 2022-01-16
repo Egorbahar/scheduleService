@@ -63,7 +63,7 @@ public class VacancyController {
         vacancy.setPosition(position.get());// написать исключение
         Department department = departmentService.findByName(vacancyRequestDto.getDepartmentName());
         vacancy.setDepartment(department);
-        final VacancyResponseDto vacancyResponseDto = vacancyMapper.toVacancyResponseDto(vacancyService.save(vacancyMapper.toVacancy(vacancyRequestDto)));
+        final VacancyResponseDto vacancyResponseDto = vacancyMapper.toVacancyResponseDto(vacancyService.save(vacancy));
         return new ResponseEntity<>(vacancyResponseDto, HttpStatus.OK);
     }
 

@@ -12,5 +12,4 @@ public class RecruiterResponseDto {
     private String email;
     private String username;
     private String phoneNumber;
-
 }
