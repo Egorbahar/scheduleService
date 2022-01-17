@@ -5,9 +5,9 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
     $('#hello').append("<b>Привет, "+ localStorage.getItem("username")+"</b>");
     if (localStorage.getItem("role")==="ROLE_ADMIN"){
         $("#bth-maker").show();
-        $("#bth-tutor").show();
-        $("#bth-studcourse").show();
         $("#bth-department").show();
+        $("#bth-studcourse").show();
+        $("#bth-engineer").show();
     }
     if (localStorage.getItem("role")==="ROLE_MAKER"){
         $("#bth-studcourse").show();
@@ -26,9 +26,9 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
 
     });
 
-    $("#bth-tutor").click(function (event) {
+    $("#bth-engineer").click(function (event) {
         event.preventDefault();
-        window.location.href = "/tutors.html";
+        window.location.href = "/engineers.html";
 
     });
     $("#bth-studcourse").click(function (event) {

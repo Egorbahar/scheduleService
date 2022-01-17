@@ -24,5 +24,6 @@ public interface EngineerMapper {
     void updateEntity(@MappingTarget Engineer engineer, EngineerRequestDto engineerRequestDto);
 
     @IterableMapping(elementTargetType = EngineerResponseDto.class)
+    @Mapping(target = "department", source = "department.name")
     List<EngineerResponseDto> toEngineerResponseDtoList(Collection<Engineer> engineers);
 }

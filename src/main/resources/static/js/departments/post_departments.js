@@ -29,7 +29,7 @@ $(document).ready(function() {
         let pathname = window.location.pathname;
         if(pathname === "/"){
             $(".nav .nav-item a:first").addClass("active");
-        } else if (pathname === "/recruiters.html") {
+        } else if (pathname === "/engineers.html") {
             $(".nav .nav-item a:last").addClass("active");
         }
     })();
