@@ -10,5 +10,8 @@ public class ScheduleResponseDto {
     private String date;
     private String startTime;
     private String endTime;
+    private String candidateName;
+    private String candidateSurname;
+    private String category;
 
 }

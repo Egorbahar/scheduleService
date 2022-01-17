@@ -7,8 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/schedules/delete_schedules.js"></script>
-    <script type="text/javascript" src="js/schedules/get_schedules.js"></script>
+    <script type="text/javascript" src="js/companies/delete_companies.js"></script>
+    <script type="text/javascript" src="js/companies/get_companies.js"></script>
     <script type="text/javascript" src="js/sign_out.js"></script>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
 
@@ -96,23 +96,17 @@
 </nav>
 <div class="container">
     <div style="width: 450px; margin-left: 900px; margin-top: 50px; margin-bottom: -70px">
-        <a class="nav-link" style="font-family: Open Sans; padding: 10px;" id="add" href="add_recruiters.html">Добавить</a>
+        <a class="nav-link" style="font-family: Open Sans; padding: 10px;" id="add" href="add_companies.html">Добавить</a>
     </div>
 
     <div id="div_customer_table">
-        <h1 style="font-family: Open Sans; font-weight: 100; color:#038500; margin: 30px">Рекрутеры</h1>
+        <h1 style="font-family: Open Sans; font-weight: 100; color:#038500; margin: 30px">Компании</h1>
         <div class="row col-md-18 table-responsive">
             <table id="customerTable" class="table table-striped">
                 <thead>
                 <tr style="background-color:#b8ffa5 ">
                     <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Id</th>
-                    <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Дата</th>
-                    <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Время начала</th>
-                    <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Время окончания</th>
-                    <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Имя кандидата</th>
-                    <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Фамилия кандидата</th>
-                    <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Категория</th>
-
+                    <th style="font-family: Open Sans; font-weight: 100; font-size: 18px; color:#90C70C">Название</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -139,7 +133,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = '/recruiters.html'">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = '/companies.html'">Cancel</button>
                     <button type="button" class="btn btn-danger" id="model-delete-btn">Delete</button>
                 </div>
             </div>

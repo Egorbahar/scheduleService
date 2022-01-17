@@ -16,5 +16,5 @@ public class CandidateRequestDto {
     @NotNull
     private String email;
     private String company;
-    private List<Long> vacancy_id;
+
 }

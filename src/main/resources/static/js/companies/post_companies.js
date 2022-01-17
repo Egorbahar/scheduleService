@@ -6,7 +6,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: '/departments?token='+localStorage.getItem("token"),
+            url: '/companies?token='+localStorage.getItem("token"),
             type: 'POST',
             contentType : "application/json",
             data: JSON.stringify(formData),
@@ -29,7 +29,7 @@ $(document).ready(function() {
         let pathname = window.location.pathname;
         if(pathname === "/"){
             $(".nav .nav-item a:first").addClass("active");
-        } else if (pathname === "/departments.html") {
+        } else if (pathname === "/companies.html") {
             $(".nav .nav-item a:last").addClass("active");
         }
     })();

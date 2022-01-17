@@ -10,76 +10,84 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/sign_out.js"></script>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en"/>
 
     <style>
-        #bth-maker, #bth-vacancy, #bth-engineer, #bth-department{
-            display: none;}
-    #bth-maker, #bth-vacancy, #bth-engineer, #bth-department, #bth-course, #bth-candidate{
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
-        border-radius: 20px;
-        /*height: 53px;*/
-        line-height: 3px;
-        color: #93c71f;
-        font-family: Open Sans;
-        width: 210px;
-        font-size: 23px;
-        font-weight: 100;
-        padding: 20px;
-        background-color: #EBFFF6;
-        border: solid #93c71f 1px;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: center;
-        margin: 10px;
-    }
+        #bth-maker, #bth-vacancy, #bth-engineer, #bth-department {
+            display: none;
+        }
+
+        #bth-maker, #bth-vacancy, #bth-engineer, #bth-department, #bth-course, #bth-candidate, #bth-schedule, #bth-candidateVacancy, #bth-company {
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            /*height: 53px;*/
+            line-height: 3px;
+            color: #93c71f;
+            font-family: Open Sans;
+            width: 210px;
+            font-size: 23px;
+            font-weight: 100;
+            padding: 20px;
+            background-color: #EBFFF6;
+            border: solid #93c71f 1px;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 10px;
+        }
 
 
+        #bth-maker:hover, #bth-vacancy:hover, #bth-engineer:hover, #bth-department:hover, #bth-course:hover, #bth-candidate:hover #bth-schedule:hover #bth-candidateVacancy #bth-company:hover {
+            background: #F0FF9B;
+            border: solid #EBFFF6 0;
+            -webkit-border-radius: 31px;
+            -moz-border-radius: 31px;
+            border-radius: 31px;
+            text-decoration: none;
+        }
 
-    #bth-maker:hover, #bth-vacancy:hover,#bth-engineer:hover, #bth-department:hover, #bth-course:hover, #bth-candidate:hover {
-        background: #F0FF9B;
-        border: solid #EBFFF6 0;
-        -webkit-border-radius: 31px;
-        -moz-border-radius: 31px;
-        border-radius: 31px;
-        text-decoration: none;
-    }
-        .form-group{
+        .form-group {
             padding: 30px;
             margin: 20px;
         }
-        img{
+
+        img {
             height: 100px;
             width: 100px;
             display: table-column;
-            background-color:  #EBFFF6;
+            background-color: #EBFFF6;
             margin: 40px;
         }
+
         button:hover img {
             background: #F0FF9B;
         }
-        img:hover{
+
+        img:hover {
             background: #F0FF9B;
         }
-        .navbar{
+
+        .navbar {
             background-color: #93c71f;
         }
-        .nav-item, .nav-link{
+
+        .nav-item, .nav-link {
             color: white;
         }
 
-        .nav-link:hover{
+        .nav-link:hover {
             color: #F0FF9B;
         }
 
-        img#maker{
+        img#maker {
             height: 100px;
             width: 80px;
             margin: 40px;
         }
-        img#courses, img#types{
-           width: 120px;
+
+        img#courses, img#types {
+            width: 120px;
             margin-left: 30px;
         }
     </style>
@@ -88,7 +96,8 @@
 <nav class="navbar navbar-expand-lg  static-top">
     <div class="container">
         <a class="navbar-brand" style="color: white; size: 16px;">Планирование обеседований</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -115,7 +124,7 @@
     <form method="post" class="mt-5">
         <div class="form-group" align="center">
             <button type="button" id="bth-course"
-                    class="btn btn-primary btn-course" >Курсы
+                    class="btn btn-primary btn-course">Курсы
                 <img id="courses" src="courses.png"/>
 
             </button>
@@ -137,7 +146,19 @@
             </button>
             <button type="button" id="bth-department"
                     class="btn btn-primary btn-department">Отделы
-                <img id="types" src="types.png"/>
+                <img id="department" src="types.png"/>
+            </button>
+            <button type="button" id="bth-schedule"
+                    class="btn btn-primary btn-schedule">Расписание
+                <img id="schedule" src="types.png"/>
+            </button>
+            <button type="button" id="bth-candidateVacancy"
+                    class="btn btn-primary btn-candidateVacancy">Назначить на вакансию
+                <img id="candidateVacancy" src="types.png"/>
+            </button>
+            <button type="button" id="bth-company"
+                    class="btn btn-primary btn-company">Компании
+                <img id="company" src="types.png"/>
             </button>
         </div>
     </form>
