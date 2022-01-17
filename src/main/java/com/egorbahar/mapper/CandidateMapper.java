@@ -3,7 +3,9 @@ package com.egorbahar.mapper;
 import com.egorbahar.dto.request.CandidateRequestDto;
 import com.egorbahar.dto.response.CandidateResponseDto;
 import com.egorbahar.entity.Candidate;
-import org.mapstruct.*;
+import org.mapstruct.IterableMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 public interface CandidateMapper {
     @Mapping(target = "id" , source = "id")
     @Mapping(target = "company", source = "company.name")
-    @Mapping(target = "vacancyId", ignore = true)
+    @Mapping(target = "vacancyNameList", ignore = true)
     CandidateResponseDto toCandidateResponseDto(Candidate candidate);
 
     @Mapping(target = "id" ,ignore = true)

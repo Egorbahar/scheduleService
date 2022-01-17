@@ -31,7 +31,7 @@ $(document).ready(function () {
                         '<td class=\"td_surname\">' + candidate.surname + '</td>' +
                         '<td class=\"td_email\">' + candidate.email + '</td>' +
                         '<td class=\"td_company\">' + candidate.company + '</td>'+
-                        '<td class=\"td_vacancyId\">' + candidate.vacancyId + '</td>';
+                        '<td class=\"td_vacancyId\">' + candidate.vacancyNameList + '</td>';
                     row = row + '<td>' + deleteButton + '</td>';
 
                     row = row +

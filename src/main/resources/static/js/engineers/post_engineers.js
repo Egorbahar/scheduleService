@@ -16,7 +16,7 @@ $(document).ready(function() {
         url: "/positions?token=" + localStorage.getItem("token"),
         success: function (response) {
             $.each(response, (i, position) => {
-                var option = "<option value = " + position.name + ">" + position.value + "</option>";
+                var option = "<option value = '" + position.value + "'>" + position.value + "</option>";
                 $("#position").append(option);
             })
         }
@@ -31,7 +31,7 @@ $(document).ready(function() {
             password : $("#password").val(),
             position: $("#position").val(),
             email: $("#email").val(),
-            department: $("#department").val()
+            departmentId:  parseInt($("#department").val())
         };
 
         $.ajax({
