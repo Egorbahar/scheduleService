@@ -1,10 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/engineers/post_candidates.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+    <style>
+        label, input:placeholder-shown, select, option{
+            font-family: Open Sans;
+            font-weight: 100;
+            font-size: 18px;
+        }
+        label{
+            color: #ffffff;
+        }
+        #btn-add-new-customer, #all{
+            background: #F0FF9B;
+            border: solid #DDFF05 0;
+            -webkit-border-radius: 31px;
+            -moz-border-radius: 31px;
+            border-radius: 31px;
+            text-decoration: none;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            /*height: 53px;*/
+            line-height: 3px;
+            color: #ffffff;
+            font-family: Open Sans;
+            width: 210px;
+            font-size: 23px;
+            font-weight: 100;
+            padding: 20px;
+            background-color: #90C70C;
+            border: solid #ffffff 1px;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 10px;
+        }
+        #btn-add-new-customer:hover, #all:hover{
+            background-color: #c2ff07;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div style="margin-bottom: 40px; margin-top: 40px;">
+        <a style="font-family: Open Sans; padding: 10px;" href="engineers.html" id="all">Все записи</a>
+    </div>
+    <div class="row">
+        <div class="col-sm-7" style="background-color:#bac74f; padding:10px; border-radius:30px; border: solid #a4c726 1px">
+            <h3 style="font-family: Open Sans; font-weight: 100; color:#ffffff; margin: 30px">Добавить инженера</h3>
+            <form id="add_new">
+                <div class="form-group">
+                    <label class="control-label" for="name">Имя:</label>
+                    <input type="text" class="form-control" id="name"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="surname">Фамилия:</label>
+                    <input type="text" class="form-control" id="surname"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="username">Username:</label>
+                    <input type="text" class="form-control" id="username"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="password">Password:</label>
+                    <input type="password" class="form-control" id="password"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="position">Позиция:</label>
+                    <select  style="font-family: Open Sans;font-weight: 100; font-size: 18px; height:40px;" class="form-control" id="position" required>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Email:</label>
+                    <input type="text" class="form-control" id="email"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="department">Отдел:</label>
+                    <select  style="font-family: Open Sans;font-weight: 100; font-size: 18px; height:40px;" class="form-control" id="department" required>
+                    </select>
+                </div>
+                <button type="submit" class="btn" id="btn-add-new-customer" data-toggle="modal" data-target="#save-modal">Сохранить</button>
+            </form>
+            <div id="response" style="display:none; margin-top:10px">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="modal fade" id="save-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
 
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = '/engineers.html'" onclose="window.location.href = '/engineers.html'">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

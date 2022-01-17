@@ -1,10 +1,33 @@
 $(document).ready(function() {
+
+    $.ajax({
+        type: "GET",
+        url: "/departments?token=" + localStorage.getItem("token"),
+        success: function (response) {
+            $.each(response, (i, department) => {
+                var option = "<option value = " + department.id + ">" + department.name + "</option>";
+                $("#department").append(option);
+            })
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        url: "/positions?token=" + localStorage.getItem("token"),
+        success: function (response) {
+            $.each(response, (i, position) => {
+                var option = "<option value = '" + position.value + "'>" + position.value + "</option>";
+                $("#position").append(option);
+            })
+        }
+    });
+
     $("#add_new").submit(function(evt) {
         evt.preventDefault();
         let formData = {
             name : $("#name").val(),
             position : $("#position").val(),
-            department :  $("#department").val(),
+            departmentId : parseInt($("#department").val())
         };
 
         $.ajax({

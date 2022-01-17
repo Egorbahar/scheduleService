@@ -1,15 +1,11 @@
 package com.egorbahar.controller;
 
 import com.egorbahar.dto.request.DepartmentRequestDto;
-import com.egorbahar.dto.request.VacancyRequestDto;
 import com.egorbahar.dto.response.DepartmentResponseDto;
-import com.egorbahar.dto.response.EngineerResponseDto;
 import com.egorbahar.entity.Department;
-import com.egorbahar.entity.Vacancy;
 import com.egorbahar.mapper.DepartmentMapper;
 import com.egorbahar.service.DepartmentService;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
