@@ -3,7 +3,6 @@ package com.egorbahar.controller;
 import com.egorbahar.dto.request.CandidateRequestDto;
 import com.egorbahar.dto.response.CandidateResponseDto;
 import com.egorbahar.entity.Candidate;
-import com.egorbahar.entity.Company;
 import com.egorbahar.mapper.CandidateMapper;
 import com.egorbahar.service.CandidateService;
 import com.egorbahar.service.CandidateVacancyService;
@@ -60,18 +59,10 @@ public class CandidateController {
 
     @PostMapping
     public ResponseEntity<CandidateResponseDto> save(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
-        Company company = new Company();
-        company.setName(candidateRequestDto.getCompany());
-        if (company.getName() != null) {
-            companyService.save(company);
-            Candidate candidate = candidateMapper.toCandidate(candidateRequestDto);
-            candidate.setCompany(company);
-            candidateService.save(candidate);
-        } else {
-            CandidateResponseDto candidateResponseDto = candidateMapper.toCandidateResponseDto(candidateService.save(candidateMapper.toCandidate(candidateRequestDto)));
+        Candidate candidate = candidateMapper.toCandidate(candidateRequestDto);
+        candidate.setCompany(companyService.findById(candidateRequestDto.getCompanyId()));
+        CandidateResponseDto candidateResponseDto = candidateMapper.toCandidateResponseDto(candidateService.save(candidate));
             return new ResponseEntity<>(candidateResponseDto, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

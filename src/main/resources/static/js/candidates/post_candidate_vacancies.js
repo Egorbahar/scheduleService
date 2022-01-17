@@ -1,25 +1,33 @@
 $(document).ready(function() {
     $.ajax({
         type: "GET",
-        url: "/companies?token=" + localStorage.getItem("token"),
+        url: "/candidates?token=" + localStorage.getItem("token"),
         success: function (response) {
-            $.each(response, (i, company) => {
-                var option = "<option value = " + company.id + ">" + company.name + "</option>";
-                $("#company").append(option);
+            $.each(response, (i, candidate) => {
+                var option = "<option value = " + candidate.id + ">" + candidate.name + " " + candidate.surname + ", " + candidate.company + ", " + candidate.email + "</option>";
+                $("#candidate").append(option);
+            })
+        }
+    });
+    $.ajax({
+        type: "GET",
+        url: "/vacancies?token=" + localStorage.getItem("token"),
+        success: function (response) {
+            $.each(response, (i, vacancy) => {
+                var option = "<option value = " + vacancy.id + ">" + vacancy.name + "</option>";
+                $("#vacancy").append(option);
             })
         }
     });
     $("#add_new").submit(function(evt) {
         evt.preventDefault();
         let formData = {
-            name : $("#name").val(),
-            surname: $("#surname").val(),
-            email: $("#email").val(),
-            companyId:  parseInt($("#company").val())
+            candidateId:  parseInt($("#candidate").val()),
+            vacancyId:  parseInt($("#vacancy").val())
         };
 
         $.ajax({
-            url: '/candidates?token='+localStorage.getItem("token"),
+            url: '/candidatevacancies?token='+localStorage.getItem("token"),
             type: 'POST',
             contentType : "application/json",
             data: JSON.stringify(formData),

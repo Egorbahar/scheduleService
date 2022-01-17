@@ -1,6 +1,7 @@
 $(document).ready(function () {
-    if (localStorage.getItem("role") === "ROLE_ADMIN") {
-        $("#add").show()
+    if (localStorage.getItem("role") === "ROLE_ADMIN" || localStorage.getItem("role") === "ROLE_RECRUITER") {
+        $("#add").show();
+        $("#assign").show();
     } else {
         window.location.href = "/accessDenied.html";
     }

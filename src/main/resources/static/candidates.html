@@ -13,10 +13,16 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
 
     <style>
-        #add{
+        #add, #assign{
             display: none;
+            text-decoration: none;
+            padding: 5px;
+            color: #7FC7C2;
+            font-family: Open Sans;
+            font-size: 23px;
+            font-weight: 100;
         }
-        .btn_id, .btn_delete, #add {
+        .btn_id, .btn_delete, #add, #assign {
             background: #3bff7c;
             border: solid #EBFFF6 0;
             -webkit-border-radius: 31px;
@@ -62,9 +68,10 @@
         .nav-link:hover{
             color: #F0FF9B;
         }
-        #add:hover{
+        #add:hover, #assign:hover{
             background-color: #F0FF9B;
         }
+
     </style>
 </head>
 <body>
@@ -95,8 +102,9 @@
     </div>
 </nav>
 <div class="container">
-    <div style="width: 450px; margin-left: 900px; margin-top: 50px; margin-bottom: -70px">
+    <div style="width: 550px; margin-left: 700px; margin-top: 50px; margin-bottom: -70px">
         <a class="nav-link" style="font-family: Open Sans; padding: 10px;" id="add" href="add_candidates.html">Добавить</a>
+        <a class="nav-link" id="assign" style="font-family: Open Sans;  padding: 10px;"  href="assign_to_vacancy.html">Назначить на вакансию</a>
     </div>
 
     <div id="div_customer_table">

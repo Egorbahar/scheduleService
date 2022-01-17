@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/candidates/post_candidates.js"></script>
+    <script type="text/javascript" src="js/candidates/post_candidate_vacancies.js"></script>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
     <style>
         label, input:placeholder-shown, select, option{
@@ -51,30 +51,20 @@
 <body>
 <div class="container">
     <div style="margin-bottom: 40px; margin-top: 40px;">
-        <a style="font-family: Open Sans; padding: 10px;" href="engineers.html" id="all">Все записи</a>
+        <a style="font-family: Open Sans; padding: 10px;" href="candidates.html" id="all">Кандидаты</a>
     </div>
     <div class="row">
         <div class="col-sm-7" style="background-color:#bac74f; padding:10px; border-radius:30px; border: solid #a4c726 1px">
-            <h3 style="font-family: Open Sans; font-weight: 100; color:#ffffff; margin: 30px">Добавить кандидата</h3>
+            <h3 style="font-family: Open Sans; font-weight: 100; color:#ffffff; margin: 30px">Назначить на вакансию</h3>
             <form id="add_new">
                 <div class="form-group">
-                    <label class="control-label" for="name">Имя:</label>
-                    <input type="text" class="form-control" id="name"
-                           required>
+                    <label class="control-label" for="vacancy">Вакансия:</label>
+                    <select  style="font-family: Open Sans;font-weight: 100; font-size: 18px; height:40px;" class="form-control" id="vacancy" required>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="surname">Фамилия:</label>
-                    <input type="text" class="form-control" id="surname"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="email">Email:</label>
-                    <input type="text" class="form-control" id="email"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="company">Компания:</label>
-                    <select  style="font-family: Open Sans;font-weight: 100; font-size: 18px; height:40px;" class="form-control" id="company" required>
+                    <label class="control-label" for="candidate">Кандидат:</label>
+                    <select  style="font-family: Open Sans;font-weight: 100; font-size: 18px; height:40px;" class="form-control" id="candidate" required>
                     </select>
                 </div>
                 <button type="submit" class="btn" id="btn-add-new-customer" data-toggle="modal" data-target="#save-modal">Сохранить</button>
@@ -99,7 +89,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = '/engineers.html'" onclose="window.location.href = '/engineers.html'">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="window.location.href = '/candidates.html'" onclose="window.location.href = '/candidates.html'">Cancel</button>
                 </div>
             </div>
         </div>
