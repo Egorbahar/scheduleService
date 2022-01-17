@@ -40,8 +40,16 @@ public class EmailService {
     public void sendEmailToRecruiter(Recruiter recruiter, List<Schedule> schedules) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recruiter.getEmail());
+        String vacancies;
+        schedules.forEach(s->s.getCandidateVacancy().getVacancy().getName())
         message.setSubject("Ваши собеседования на сегодня");
-        message.setText("Text");
+        message.setText("Здравствуйте," + recruiter.getName() +
+                "!\n" + "Напоминаем Вам о предстоящих собеседованиях на вакансии "
+                + schedule.getCandidateVacancy().getVacancy().getName() + "\n"
+                + "Когда: Интервью состоится " + schedule.getStartTime() + "\n"
+                + "Кандидат: " + schedule.getCandidateVacancy().getCandidate().getName()
+                + " " + schedule.getCandidateVacancy().getCandidate().getSurname() + "\n" + "\n"
+                + "С уважением," + "\n" + "Система опевещения");
         mailSender.send(message);
     }
 
