@@ -20,10 +20,10 @@ public enum Position {
         return position;
     }
 
-    public Map<String, Position> getPositionList() {
-        Map <String, Position> map = new HashMap<>();
+    public Map<String, String> getPositionList() {
+        Map <String, String> map = new HashMap<>();
         for (Position position : Position.values()) {
-            map.put(position.getPosition(), position);
+            map.put(position.getPosition(), position.name());
         }
         return map;
     }
