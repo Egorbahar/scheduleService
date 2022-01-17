@@ -1,5 +1,8 @@
 package com.egorbahar.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum Position {
     JUNIOR_JAVA_DEVELOPER("Junior Java Developer"),
     MIDDLE_JAVA_DEVELOPER("Middle Java Developer"),
@@ -15,5 +18,13 @@ public enum Position {
 
     public String getPosition() {
         return position;
+    }
+
+    public Map<String, Position> getPositionList() {
+        Map <String, Position> map = new HashMap<>();
+        for (Position position : Position.values()) {
+            map.put(position.getPosition(), position);
+        }
+        return map;
     }
 }
