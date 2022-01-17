@@ -14,4 +14,8 @@ public interface ScheduleService {
     List<Schedule> findAll();
 
     Schedule findById(Long id);
+
+    List<Schedule> findByRecruiterId(Long id);
+
+    List<Schedule> findByEngineerId(Long id);
 }

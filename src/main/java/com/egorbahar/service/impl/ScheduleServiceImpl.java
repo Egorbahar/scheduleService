@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ScheduleServiceImpl implements ScheduleService {
     private final ScheduleRepository scheduleRepository;
+
     private final LocalMessageSource messageSource;
     @Override
     public Schedule save(Schedule schedule) {
@@ -38,5 +39,14 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Schedule findById(Long id) {
         return scheduleRepository.findById(id).orElseThrow(()->new RuntimeException(messageSource.getMessage("error.schedule.notExist", new Object[]{})));
+    }
+    @Override
+    public List<Schedule> findByRecruiterId(Long id)
+    {
+        return scheduleRepository.findSchedulesByRecruiter_Id(id);
+    }
+    public List<Schedule> findByEngineerId(Long id)
+    {
+        return scheduleRepository.findSchedulesByEngineer_Id(id);
     }
 }

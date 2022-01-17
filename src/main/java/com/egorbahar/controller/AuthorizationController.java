@@ -9,6 +9,7 @@ import com.egorbahar.dto.response.TokenRefreshResponseDto;
 import com.egorbahar.entity.RefreshToken;
 import com.egorbahar.entity.User;
 import com.egorbahar.exceptions.TokenRefreshException;
+import com.egorbahar.service.impl.EmailService;
 import com.egorbahar.service.impl.RefreshTokenService;
 import com.egorbahar.service.impl.UserService;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 
 @RestController
 @AllArgsConstructor
@@ -28,6 +30,7 @@ import javax.validation.Valid;
 public class AuthorizationController {
     private final UserService userService;
     private final JwtProvider jwtProvider;
+    private final EmailService emailService;
     private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/register")
@@ -41,6 +44,7 @@ public class AuthorizationController {
 
     @PostMapping("/auth")
     public ResponseEntity<AuthorizationResponseDto> auth(@RequestBody AuthorizationRequestDto authorizationRequestDto) {
+        emailService.sendEmail();
         User user = userService.findByUserNameAndPassword(authorizationRequestDto.getUsername(), authorizationRequestDto.getPassword());
         String token = jwtProvider.generateToken(user.getUsername());
         RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getId());

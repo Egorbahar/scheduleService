@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ScheduleResponseDto {
     private Long id;
-    private String date;
+    private Long duration;
     private String startTime;
     private String endTime;
     private String candidateName;

@@ -3,12 +3,16 @@ package com.egorbahar.controller;
 import com.egorbahar.dto.request.ScheduleRequestDto;
 import com.egorbahar.dto.response.ScheduleResponseDto;
 import com.egorbahar.dto.response.ScheduleResponseDto;
+import com.egorbahar.entity.Category;
 import com.egorbahar.entity.Schedule;
 import com.egorbahar.mapper.ScheduleMapper;
+import com.egorbahar.service.CategoryService;
 import com.egorbahar.service.ScheduleService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,18 +22,21 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/schedules")
+@Slf4j
 public class ScheduleController {
     private final ScheduleService scheduleService;
     private final ScheduleMapper scheduleMapper;
 
     @GetMapping
     public ResponseEntity<List<ScheduleResponseDto>> getAll() {
-        List<ScheduleResponseDto> scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findAll());
+        List<Schedule> schedules = scheduleService.findAll();
+        List<ScheduleResponseDto> scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(schedules);
         return new ResponseEntity<>(scheduleResponseDtoList, HttpStatus.OK);
     }
 
@@ -64,5 +71,29 @@ public class ScheduleController {
         scheduleService.update(schedule);
         ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(schedule);
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
+    }
+    @GetMapping("/test")
+    public ResponseEntity<List<ScheduleResponseDto>> getSchedulesByRole( @RequestParam(required = false) String role,  @RequestParam(required = false) Long userId) {
+
+        List<ScheduleResponseDto> scheduleResponseDtoList = new ArrayList<>();
+
+        if (role != null)
+        {
+            switch (role) {
+                case "recruiter":
+                    scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findByRecruiterId(userId));
+                    break;
+                case "engineer":
+                    scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findByEngineerId(userId));
+                    break;
+            }
+        }
+        else {
+            scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findAll());
+        }
+        scheduleResponseDtoList
+                .forEach(s -> s.setEndTime(LocalDateTime.parse(s.getStartTime()).plusMinutes(s.getDuration()).toString()));
+
+        return new ResponseEntity<>(scheduleResponseDtoList, HttpStatus.OK);
     }
 }

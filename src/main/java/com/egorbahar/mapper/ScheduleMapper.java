@@ -10,6 +10,10 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ScheduleMapper {
+    @Mapping(target = "category", source = "category.name")
+    @Mapping(target = "duration", source = "category.duration")
+    @Mapping(target = "candidateName", source = "candidateVacancy.candidate.name")
+    @Mapping(target = "candidateSurname", source = "candidateVacancy.candidate.surname")
     ScheduleResponseDto toScheduleResponseDto(Schedule schedule);
 
     @Mapping(target = "id", ignore = true)
