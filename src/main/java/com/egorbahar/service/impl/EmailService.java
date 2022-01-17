@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Service
 @AllArgsConstructor
@@ -40,20 +41,15 @@ public class EmailService {
     public void sendEmailToRecruiter(Recruiter recruiter, List<Schedule> schedules) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(recruiter.getEmail());
-        String vacancies;
-        schedules.forEach(s->s.getCandidateVacancy().getVacancy().getName())
         message.setSubject("Ваши собеседования на сегодня");
         message.setText("Здравствуйте," + recruiter.getName() +
-                "!\n" + "Напоминаем Вам о предстоящих собеседованиях на вакансии "
-                + schedule.getCandidateVacancy().getVacancy().getName() + "\n"
-                + "Когда: Интервью состоится " + schedule.getStartTime() + "\n"
-                + "Кандидат: " + schedule.getCandidateVacancy().getCandidate().getName()
-                + " " + schedule.getCandidateVacancy().getCandidate().getSurname() + "\n" + "\n"
-                + "С уважением," + "\n" + "Система опевещения");
+                "!\n" + "Напоминаем Вам о предстоящих собеседованиях: " +
+                createScheduleMessage(schedules) + "\n" + "С уважением," + "\n" + "Система оповещения");
         mailSender.send(message);
     }
 
-   // @Scheduled(cron = "0 * * * * ?")
+
+    // @Scheduled(cron = "0 * * * * ?")
     public void sendEmailToEngineersCronJob() {
         engineerRepository
                 .findAll()
@@ -63,11 +59,28 @@ public class EmailService {
     }
 
     public void sendEmailToEngineer(Engineer engineer, List<Schedule> schedules) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(engineer.getEmail());
-        message.setSubject("Ваше собесе");
-        message.setText(schedules.toString());
-        mailSender.send(message);
+        SimpleMailMessage engineerMessage = new SimpleMailMessage();
+        engineerMessage.setTo(engineer.getEmail());
+        engineerMessage.setSubject("Ваши собеседования на сегодня");
+        engineerMessage.setText("Здравствуйте," + engineer.getName() +
+                "!\n" + "Напоминаем Вам о предстоящих собеседованиях: "
+                + createScheduleMessage(schedules) + "\n" + "С уважением," + "\n" + "Система оповещения");
 
+        mailSender.send(engineerMessage);
+    }
+
+    public StringJoiner createScheduleMessage(List<Schedule> schedules) {
+        StringJoiner joiner = new StringJoiner("");
+        for (Schedule schedule : schedules) {
+            joiner.add("Вакансия: ");
+            joiner.add(schedule.getCandidateVacancy().getVacancy().getName() + "\n");
+            joiner.add("Категория интервью: ");
+            joiner.add(schedule.getCategory().getName() + "\n");
+            joiner.add("Начало: ");
+            joiner.add(schedule.getStartTime().toString().replace("T", " ") + "\n");
+            joiner.add("Кандидат: ");
+            joiner.add(schedule.getCandidateVacancy().getCandidate().getName() + " " + schedule.getCandidateVacancy().getCandidate().getSurname() + "\n\n");
+        }
+        return joiner;
     }
 }
