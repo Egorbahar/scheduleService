@@ -61,7 +61,7 @@ public class VacancyController {
         Vacancy vacancy = vacancyMapper.toVacancy(vacancyRequestDto);
         vacancy.setDate(localDateTime);
         vacancy.setPosition(position.get());// написать исключение
-        Department department = departmentService.findByName(vacancyRequestDto.getDepartmentName());
+        Department department = departmentService.findByName(vacancyRequestDto.getDepartment());
         vacancy.setDepartment(department);
         final VacancyResponseDto vacancyResponseDto = vacancyMapper.toVacancyResponseDto(vacancyService.save(vacancy));
         return new ResponseEntity<>(vacancyResponseDto, HttpStatus.OK);

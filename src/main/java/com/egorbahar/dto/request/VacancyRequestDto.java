@@ -13,5 +13,5 @@ public class VacancyRequestDto {
     @NotNull
     private String position;
     @NotNull
-    private String departmentName;
+    private String department;
 }

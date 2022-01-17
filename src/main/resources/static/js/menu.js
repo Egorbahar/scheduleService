@@ -6,11 +6,11 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
     if (localStorage.getItem("role")==="ROLE_ADMIN"){
         $("#bth-maker").show();
         $("#bth-department").show();
-        $("#bth-studcourse").show();
+        $("#bth-vacancy").show();
         $("#bth-engineer").show();
     }
     if (localStorage.getItem("role")==="ROLE_MAKER"){
-        $("#bth-studcourse").show();
+        $("#bth-vacancy").show();
         $("#bth-department").show();
     }
 
@@ -31,9 +31,9 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
         window.location.href = "/engineers.html";
 
     });
-    $("#bth-studcourse").click(function (event) {
+    $("#bth-vacancy").click(function (event) {
         event.preventDefault();
-        window.location.href = "/studentcourses.html";
+        window.location.href = "/vacancies.html";
 
     });
     $("#bth-maker").click(function (event) {
