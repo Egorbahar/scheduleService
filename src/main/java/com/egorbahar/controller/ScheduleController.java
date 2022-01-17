@@ -33,13 +33,6 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
     private final ScheduleMapper scheduleMapper;
 
-    @GetMapping
-    public ResponseEntity<List<ScheduleResponseDto>> getAll() {
-        List<Schedule> schedules = scheduleService.findAll();
-        List<ScheduleResponseDto> scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(schedules);
-        return new ResponseEntity<>(scheduleResponseDtoList, HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<ScheduleResponseDto> getById(@PathVariable("id") @NotBlank @Positive Long id) {
         ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(scheduleService.findById(id));
@@ -72,7 +65,7 @@ public class ScheduleController {
         ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(schedule);
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
     }
-    @GetMapping("/test")
+    @GetMapping
     public ResponseEntity<List<ScheduleResponseDto>> getSchedulesByRole( @RequestParam(required = false) String role,  @RequestParam(required = false) Long userId) {
 
         List<ScheduleResponseDto> scheduleResponseDtoList = new ArrayList<>();
