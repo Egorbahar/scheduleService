@@ -44,7 +44,6 @@ public class AuthorizationController {
 
     @PostMapping("/auth")
     public ResponseEntity<AuthorizationResponseDto> auth(@RequestBody AuthorizationRequestDto authorizationRequestDto) {
-        emailService.sendEmail();
         User user = userService.findByUserNameAndPassword(authorizationRequestDto.getUsername(), authorizationRequestDto.getPassword());
         String token = jwtProvider.generateToken(user.getUsername());
         RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getId());
