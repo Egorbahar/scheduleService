@@ -7,11 +7,11 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
         $("#bth-maker").show();
         $("#bth-tutor").show();
         $("#bth-studcourse").show();
-        $("#bth-type").show();
+        $("#bth-department").show();
     }
     if (localStorage.getItem("role")==="ROLE_MAKER"){
         $("#bth-studcourse").show();
-        $("#bth-type").show();
+        $("#bth-department").show();
     }
 
     $("#bth-course").click(function (event) {
@@ -20,9 +20,9 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
 
     });
 
-    $("#bth-type").click(function (event) {
+    $("#bth-department").click(function (event) {
         event.preventDefault();
-        window.location.href = "/types.html";
+        window.location.href = "/departments.html";
 
     });
 
