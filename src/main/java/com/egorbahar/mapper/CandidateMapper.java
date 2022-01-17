@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CandidateMapper {
     @Mapping(target = "id" , source = "id")
-    @Mapping(target = "companyId", source = "company.id")
+    @Mapping(target = "company", source = "company.name")
     @Mapping(target = "vacancyId", ignore = true)
     CandidateResponseDto toCandidateResponseDto(Candidate candidate);
 
@@ -20,12 +20,8 @@ public interface CandidateMapper {
     @Mapping(target = "candidateVacancies", ignore = true)
     Candidate toCandidate(CandidateRequestDto candidateRequestDto);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "id", ignore = true)
-    void updateEntity(@MappingTarget Candidate candidate, CandidateRequestDto candidateRequestDto);
-
-    @Mapping(target = "companyId", source = "company.id")
-    @Mapping(target = "candidateVacancyId", source = "candidateVacancies")
     @IterableMapping(elementTargetType = CandidateResponseDto.class)
+    @Mapping(target = "company", source = "company.name")
+    @Mapping(target = "candidateVacancyId", source = "candidateVacancies")
     List<CandidateResponseDto> toCandidateResponseDtoList(Collection<Candidate> candidates);
 }

@@ -61,7 +61,7 @@ public class CandidateController {
     @PostMapping
     public ResponseEntity<CandidateResponseDto> save(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
         Company company = new Company();
-        company.setName(candidateRequestDto.getCompanyName());
+        company.setName(candidateRequestDto.getCompany());
         if (company.getName() != null) {
             companyService.save(company);
             Candidate candidate = candidateMapper.toCandidate(candidateRequestDto);

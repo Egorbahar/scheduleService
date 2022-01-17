@@ -8,6 +8,8 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
         $("#bth-department").show();
         $("#bth-vacancy").show();
         $("#bth-engineer").show();
+        $("#bth-candidate").show();
+
     }
     if (localStorage.getItem("role")==="ROLE_MAKER"){
         $("#bth-vacancy").show();
@@ -41,9 +43,9 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
         window.location.href = "/recruiters.html";
 
     });
-    $("#bth-event").click(function (event) {
+    $("#bth-candidate").click(function (event) {
         event.preventDefault();
-        window.location.href = "/events.html";
+        window.location.href = "/candidates.html";
 
     });
 });
