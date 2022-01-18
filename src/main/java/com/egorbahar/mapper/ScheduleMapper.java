@@ -10,14 +10,19 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ScheduleMapper {
-    @Mapping(target = "category", source = "category.name")
-    @Mapping(target = "duration", source = "category.duration")
-    @Mapping(target = "candidateName", source = "candidateVacancy.candidate.name")
-    @Mapping(target = "candidateSurname", source = "candidateVacancy.candidate.surname")
+    @Mapping(target = "category", source = "schedule.category.name")
+    @Mapping(target = "duration", source = "schedule.category.duration")
+    @Mapping(target = "candidateName", source = "schedule.candidateVacancy.candidate.name")
+    @Mapping(target = "candidateSurname", source = "schedule.candidateVacancy.candidate.surname")
+    @Mapping(target = "vacancy", source = "schedule.candidateVacancy.vacancy.name")
     ScheduleResponseDto toScheduleResponseDto(Schedule schedule);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "startTime" , ignore = true)
+    @Mapping(target = "category.id" , source = "categoryId")
+    @Mapping(target = "candidateVacancy.id" , source = "candidateVacancyId")
+    @Mapping(target = "engineer.id" , source = "engineerId")
+    @Mapping(target = "recruiter.id" , source = "recruiterId")
     Schedule toSchedule(ScheduleRequestDto scheduleRequestDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

@@ -2,17 +2,13 @@ package com.egorbahar.controller;
 
 import com.egorbahar.dto.request.ScheduleRequestDto;
 import com.egorbahar.dto.response.ScheduleResponseDto;
-import com.egorbahar.dto.response.ScheduleResponseDto;
-import com.egorbahar.entity.Category;
 import com.egorbahar.entity.Schedule;
 import com.egorbahar.mapper.ScheduleMapper;
-import com.egorbahar.service.CategoryService;
 import com.egorbahar.service.ScheduleService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,7 +49,7 @@ public class ScheduleController {
         LocalDateTime localDateTime = LocalDateTime.of(localDate,localTime);
         Schedule schedule = scheduleMapper.toSchedule(scheduleRequestDto);
         schedule.setStartTime(localDateTime);
-        final ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(scheduleService.save(scheduleMapper.toSchedule(scheduleRequestDto)));
+        final ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(scheduleService.save(schedule));
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
     }
 

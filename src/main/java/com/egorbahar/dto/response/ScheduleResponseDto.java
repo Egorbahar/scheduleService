@@ -13,5 +13,5 @@ public class ScheduleResponseDto {
     private String candidateName;
     private String candidateSurname;
     private String category;
-
+    private String vacancy;
 }

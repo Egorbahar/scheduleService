@@ -4,20 +4,25 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
 }
     $('#hello').append("<b>Привет, "+ localStorage.getItem("username")+"</b>");
     if (localStorage.getItem("role")==="ROLE_ADMIN"){
-        $("#bth-maker").show();
+        $("#bth-recruiter").show();
         $("#bth-department").show();
         $("#bth-vacancy").show();
         $("#bth-engineer").show();
+        $("#bth-schedule").show();
         $("#bth-candidate").show();
-        $("#bth-candidateVacancy").show();
         $("#bth-company").show();
 
-
-
     }
-    if (localStorage.getItem("role")==="ROLE_MAKER"){
+    if (localStorage.getItem("role")==="ROLE_RECRUITER"){
+        $("#bth-candidate").show();
         $("#bth-vacancy").show();
-        $("#bth-department").show();
+        $("#bth-company").show();
+        $("#bth-schedule").show();
+    }
+
+    if (localStorage.getItem("role")==="ROLE_ENGINEER"){
+        $("#bth-vacancy").show();
+        $("#bth-schedule").show();
     }
 
     $("#bth-course").click(function (event) {
@@ -42,7 +47,7 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
         window.location.href = "/vacancies.html";
 
     });
-    $("#bth-maker").click(function (event) {
+    $("#bth-recruiter").click(function (event) {
         event.preventDefault();
         window.location.href = "/recruiters.html";
 
@@ -51,9 +56,9 @@ if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined
         event.preventDefault();
         window.location.href = "/candidates.html";
     });
-    $("#bth-candidateVacancy").click(function (event) {
+    $("#bth-schedule").click(function (event) {
         event.preventDefault();
-        window.location.href = "/candidateVacancies.html";
+        window.location.href = "/schedules.html";
     });
     $("#bth-company").click(function (event) {
         event.preventDefault();
