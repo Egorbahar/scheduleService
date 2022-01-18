@@ -6,10 +6,10 @@ $(document).ready(function () {
     } else
     if (localStorage.getItem("role") === "ROLE_RECRUITER") {
         $("#add").show()
-        url = "/schedules?token=" + localStorage.getItem("token") + "&role=recruiter";
+        url = "/schedules?token=" + localStorage.getItem("token") + "&role=recruiter&userId=" + localStorage.getItem("userId");
     } else
     if (localStorage.getItem("role") === "ROLE_ENGINEER") {
-        url = "/schedules?token=" + localStorage.getItem("token") + "&role=engineer";
+        url = "/schedules?token=" + localStorage.getItem("token") + "&role=engineer&userId="+ localStorage.getItem("userId");
     }
     else {window.location.href = "/accessDenied.html";}
 
