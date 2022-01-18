@@ -1,9 +1,11 @@
 $(document).ready(function(){
-    if(localStorage.getItem("role")==="ROLE_ADMIN") {
+    if(localStorage.getItem("role")==="ROLE_ADMIN" || localStorage.getItem("role")==="ROLE_ENGINEER") {
         $("#add").show()
     }
-    else{window.location.href = "/accessDenied.html";
+    else if (localStorage.getItem("role")!=="ROLE_RECRUITER")
+    {window.location.href = "/accessDenied.html";
     }
+
     $('#hello').append("<b>Привет, "+ localStorage.getItem("username")+"</b>");
     (function(){
         $.ajax({
@@ -51,7 +53,7 @@ $(document).ready(function(){
 
     (function(){
         let pathname = window.location.pathname;
-        if (pathname === "/vacancys.html") {
+        if (pathname === "/vacancies.html") {
             $(".nav .nav-item a:last").addClass("active");
         }
     })();

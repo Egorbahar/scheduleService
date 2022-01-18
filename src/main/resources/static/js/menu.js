@@ -2,6 +2,15 @@ $(document).ready(function() {
 if(localStorage.getItem("role")==="" || localStorage.getItem("role")===undefined){
     window.location.href = "/accessDenied.html";
 }
+
+    $("#bth-recruiter").hide();
+    $("#bth-department").hide();
+    $("#bth-vacancy").hide();
+    $("#bth-engineer").hide();
+    $("#bth-schedule").hide();
+    $("#bth-candidate").hide();
+    $("#bth-company").hide();
+
     $('#hello').append("<b>Привет, "+ localStorage.getItem("username")+"</b>");
     if (localStorage.getItem("role")==="ROLE_ADMIN"){
         $("#bth-recruiter").show();
