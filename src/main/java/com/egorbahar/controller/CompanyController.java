@@ -7,10 +7,21 @@ import com.egorbahar.dto.response.CompanyResponseDto;
 import com.egorbahar.dto.response.CompanyResponseDto;
 import com.egorbahar.entity.Company;
 import com.egorbahar.entity.Company;
+import com.egorbahar.entity.Role;
+import com.egorbahar.entity.User;
 import com.egorbahar.mapper.CompanyMapper;
+import com.egorbahar.repository.RoleRepository;
+import com.egorbahar.repository.UserRepository;
 import com.egorbahar.service.CompanyService;
 import com.egorbahar.service.CompanyService;
+import com.egorbahar.service.impl.UserService;
 import lombok.AllArgsConstructor;
+import org.mapstruct.control.MappingControl;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +30,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 @RestController
 @RequestMapping("/companies")

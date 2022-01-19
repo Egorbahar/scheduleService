@@ -63,10 +63,13 @@ $(document).ready(function() {
             dataType : 'json',
             async: false,
             success: function (response) {
-                $("div.modal-body")
-                    .text("Успешно сохранено");
+                // $("div.modal-body")
+                //     .text("Успешно сохранено");
+                //
+                // $("button.btn.btn-secondary").text("Close");
 
-                $("button.btn.btn-secondary").text("Close");
+                event.preventDefault();
+                window.location.href = "/schedules.html";
             },
             error: function (error) {
                 alert(error["responseText"])

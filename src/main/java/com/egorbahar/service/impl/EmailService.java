@@ -10,6 +10,7 @@ import com.egorbahar.repository.RecruiterRepository;
 import com.egorbahar.repository.ScheduleRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -23,7 +24,6 @@ import java.util.StringJoiner;
 @Service
 @AllArgsConstructor
 @Slf4j
-@EnableScheduling
 public class EmailService {
     private final JavaMailSender mailSender;
     private final ScheduleRepository scheduleRepository;
@@ -31,8 +31,8 @@ public class EmailService {
     private final EngineerRepository engineerRepository;
     private final CandidateVacancyRepository candidateVacancyRepository;
 
-    //    @Scheduled(cron = "0 0 7 * * ?")
-   // @Scheduled(cron = "0 * * * * ?")
+    //@Scheduled(cron = "0 0 7 * * ?")
+    @Scheduled(cron = "0 * * * * ?")
     public void sendEmailToRecruitersCronJob() {
         recruiterRepository
                 .findAll()
@@ -40,25 +40,26 @@ public class EmailService {
                 .forEach(r -> sendEmailToRecruiter(r,
                         scheduleRepository.findSchedulesByRecruiter_IdAndStartTimeBetween(r.getId(), LocalDateTime.now(), LocalDateTime.now().plusDays(1))));
     }
+
     @Scheduled(cron = "0 * * * * ?")
     public void sendEmailToCandidatesCronJob() {
         scheduleRepository.findAll().parallelStream()
-                .filter(s->s.getStartTime().isAfter(LocalDateTime.now())&&s.getStartTime().isBefore(LocalDateTime.now().plusDays(1)))
-                .forEach(schedule -> sendEmailToCandidate(schedule.getCandidateVacancy().getCandidate(),schedule));
+                .filter(s -> s.getStartTime().isAfter(LocalDateTime.now()) && s.getStartTime().isBefore(LocalDateTime.now().plusDays(1)))
+                .forEach(schedule -> sendEmailToCandidate(schedule.getCandidateVacancy().getCandidate(), schedule));
     }
 
     public void sendEmailToCandidate(Candidate candidate, Schedule schedule) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(candidate.getEmail());
         StringJoiner joiner = new StringJoiner("");
-            joiner.add("Вакансия: ");
-            joiner.add(schedule.getCandidateVacancy().getVacancy().getName() + "\n");
-            joiner.add("Начало: ");
-            joiner.add(schedule.getStartTime().toString().replace("T", " ") + "\n");
-            message.setSubject("Собеседование");
-            message.setText("Здравствуйте," + candidate.getName() +
-                    "!\n" + "Напоминаем Вам о предстоящем собеседованиии: " +
-                    joiner + "\n" + "С уважением," + "\n" + "Система оповещения");
+        joiner.add("Вакансия: ");
+        joiner.add(schedule.getCandidateVacancy().getVacancy().getName() + "\n");
+        joiner.add("Начало: ");
+        joiner.add(schedule.getStartTime().toString().replace("T", " ") + "\n");
+        message.setSubject("Собеседование");
+        message.setText("Здравствуйте," + candidate.getName() +
+                "!\n" + "Напоминаем Вам о предстоящем собеседованиии: " +
+                joiner + "\n" + "С уважением," + "\n" + "Система оповещения");
         mailSender.send(message);
     }
 
