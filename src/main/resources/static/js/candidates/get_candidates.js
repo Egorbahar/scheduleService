@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    console.log("!!!!!!!!", localStorage.getItem("role"));
     if (localStorage.getItem("role") === "ROLE_ADMIN" || localStorage.getItem("role") === "ROLE_RECRUITER") {
         $("#add").show();
         $("#assign").show();

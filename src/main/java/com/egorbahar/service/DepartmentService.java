@@ -1,6 +1,8 @@
 package com.egorbahar.service;
 
 import com.egorbahar.entity.Department;
+import org.springframework.context.annotation.AnnotatedBeanDefinitionReader;
+import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

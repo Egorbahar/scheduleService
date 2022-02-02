@@ -8,6 +8,7 @@ import com.egorbahar.mapper.RecruiterMapper;
 import com.egorbahar.service.RecruiterService;
 import com.egorbahar.service.RecruiterService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/recruiters")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RecruiterController {
     private final RecruiterService recruiterService;
     private final RecruiterMapper recruiterMapper;

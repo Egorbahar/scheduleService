@@ -5,11 +5,15 @@ import com.egorbahar.entity.Vacancy;
 import com.egorbahar.repository.VacancyRepository;
 import com.egorbahar.service.VacancyService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+
 public class VacancyServiceImpl implements VacancyService {
     private final VacancyRepository vacancyRepository;
     private final LocalMessageSource messageSource;
@@ -21,6 +25,7 @@ public class VacancyServiceImpl implements VacancyService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         findById(id);
         vacancyRepository.deleteById(id);

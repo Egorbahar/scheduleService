@@ -9,6 +9,7 @@ import com.egorbahar.entity.CandidateVacancy;
 import com.egorbahar.mapper.CandidateVacancyMapper;
 import com.egorbahar.service.CandidateVacancyService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/candidatevacancies")
 public class CandidateVacancyController {
     private final CandidateVacancyService candidateVacancyService;

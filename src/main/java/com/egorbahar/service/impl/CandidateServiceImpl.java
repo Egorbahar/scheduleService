@@ -4,13 +4,13 @@ import com.egorbahar.component.LocalMessageSource;
 import com.egorbahar.entity.Candidate;
 import com.egorbahar.repository.CandidateRepository;
 import com.egorbahar.service.CandidateService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CandidateServiceImpl implements CandidateService {
     private final CandidateRepository candidateRepository;
     private final LocalMessageSource messageSource;

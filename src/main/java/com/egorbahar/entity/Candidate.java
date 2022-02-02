@@ -21,7 +21,7 @@ public class Candidate {
     private String surname;
     @Size(min=5, message = "Не меньше 5 знаков")
     private String email;
-    @OneToMany(mappedBy = "candidate", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     private Set<CandidateVacancy> candidateVacancies;
     @OneToOne
     @JoinColumn(name = "company_id")

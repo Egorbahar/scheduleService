@@ -9,6 +9,7 @@ import com.egorbahar.mapper.VacancyMapper;
 import com.egorbahar.service.DepartmentService;
 import com.egorbahar.service.VacancyService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/vacancies")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class VacancyController {
     private final VacancyService vacancyService;
     private final DepartmentService departmentService;

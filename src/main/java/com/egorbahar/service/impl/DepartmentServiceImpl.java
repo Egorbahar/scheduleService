@@ -5,13 +5,14 @@ import com.egorbahar.entity.Department;
 import com.egorbahar.repository.DepartmentRepository;
 import com.egorbahar.service.DepartmentService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService {
     private final DepartmentRepository departmentRepository;
     private final LocalMessageSource messageSource;

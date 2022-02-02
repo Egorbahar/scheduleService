@@ -3,6 +3,8 @@ package com.egorbahar.entity;
 import com.egorbahar.enums.Position;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,7 +26,7 @@ public class Vacancy {
     private LocalDateTime date;
     @Enumerated(EnumType.STRING)
     private Position position;
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "vacancy", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacancy")
     private Set<CandidateVacancy> candidateVacancies;
     @ManyToOne
     @JoinColumn (name="department_id")

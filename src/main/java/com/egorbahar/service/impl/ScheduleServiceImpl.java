@@ -5,15 +5,17 @@ import com.egorbahar.entity.Schedule;
 import com.egorbahar.repository.ScheduleRepository;
 import com.egorbahar.service.ScheduleService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ScheduleServiceImpl implements ScheduleService {
     private final ScheduleRepository scheduleRepository;
 
     private final LocalMessageSource messageSource;
+
     @Override
     public Schedule save(Schedule schedule) {
         return scheduleRepository.save(schedule);

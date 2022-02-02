@@ -19,6 +19,6 @@ public class Department {
     @NotNull(message = "department.name.notNull")
     @Size(min = 3, max = 50, message = "{department.name.size}")
     private String name;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "department", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
     private List<Vacancy> vacancies;
 }

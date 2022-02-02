@@ -5,11 +5,12 @@ import com.egorbahar.entity.Category;
 import com.egorbahar.repository.CategoryRepository;
 import com.egorbahar.service.CategoryService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final LocalMessageSource messageSource;

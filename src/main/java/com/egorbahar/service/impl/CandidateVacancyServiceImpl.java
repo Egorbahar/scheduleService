@@ -5,10 +5,11 @@ import com.egorbahar.entity.CandidateVacancy;
 import com.egorbahar.repository.CandidateVacancyRepository;
 import com.egorbahar.service.CandidateVacancyService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class CandidateVacancyServiceImpl implements CandidateVacancyService {
     private final CandidateVacancyRepository candidateVacancyRepository;

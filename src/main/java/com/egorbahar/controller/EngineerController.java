@@ -9,6 +9,7 @@ import com.egorbahar.mapper.EngineerMapper;
 import com.egorbahar.service.DepartmentService;
 import com.egorbahar.service.EngineerService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/engineers")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EngineerController {
     private final EngineerService engineerService;
     private final DepartmentService departmentService;
