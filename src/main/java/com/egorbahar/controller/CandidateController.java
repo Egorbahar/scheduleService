@@ -3,7 +3,6 @@ package com.egorbahar.controller;
 import com.egorbahar.dto.request.CandidateRequestDto;
 import com.egorbahar.dto.response.CandidateResponseDto;
 import com.egorbahar.entity.Candidate;
-import com.egorbahar.entity.Company;
 import com.egorbahar.mapper.CandidateMapper;
 import com.egorbahar.service.CandidateService;
 import com.egorbahar.service.CandidateVacancyService;
@@ -31,12 +30,12 @@ public class CandidateController {
     @GetMapping
     public ResponseEntity<List<CandidateResponseDto>> getAll() {
         List<CandidateResponseDto> candidateResponseDtoList = candidateMapper.toCandidateResponseDtoList(candidateService.findAll());
-        for (CandidateResponseDto candidate : candidateResponseDtoList) {
-            List<Long> vacanciesId = candidateVacancyService.findAll().stream()
-                    .filter(candidateVacancy -> candidateVacancy.getCandidate().getId().equals(candidate.getId()))
-                    .map(candidateVacancy -> candidateVacancy.getVacancy().getId())
+        for (CandidateResponseDto candidateResponseDto : candidateResponseDtoList) {
+            List<String> vacancyNameList = candidateVacancyService.findAll().stream()
+                    .filter(candidateVacancy -> candidateVacancy.getCandidate().getId().equals(candidateResponseDto.getId()))
+                    .map(candidateVacancy -> candidateVacancy.getVacancy().getName())
                     .collect(Collectors.toList());
-            candidate.setVacancyId(vacanciesId);
+            candidateResponseDto.setVacancyNameList(vacancyNameList);
         }
         return new ResponseEntity<>(candidateResponseDtoList, HttpStatus.OK);
     }
@@ -44,11 +43,11 @@ public class CandidateController {
     @GetMapping("/{id}")
     public ResponseEntity<CandidateResponseDto> getById(@PathVariable("id") @NotBlank @Positive Long id) {
         CandidateResponseDto candidateResponseDto = candidateMapper.toCandidateResponseDto(candidateService.findById(id));
-        List<Long> vacanciesId = candidateVacancyService.findAll().stream()
+        List<String> vacancyNameList = candidateVacancyService.findAll().stream()
                 .filter(candidateVacancy -> candidateVacancy.getCandidate().getId().equals(id))
-                .map(candidateVacancy -> candidateVacancy.getVacancy().getId())
+                .map(candidateVacancy -> candidateVacancy.getVacancy().getName())
                 .collect(Collectors.toList());
-        candidateResponseDto.setVacancyId(vacanciesId);
+        candidateResponseDto.setVacancyNameList(vacancyNameList);
         return new ResponseEntity<>(candidateResponseDto, HttpStatus.OK);
     }
 
@@ -59,20 +58,13 @@ public class CandidateController {
     }
 
     @PostMapping
-    public void save(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
-        Company company = new Company();
-        company.setName(candidateRequestDto.getCompanyName());
-        if (company.getName() != null) {
-            companyService.save(company);
-            Candidate candidate = candidateMapper.toCandidate(candidateRequestDto);
-            candidate.setCompany(company);
-            candidateService.save(candidate);
-        } else {
-            Candidate candidate = candidateMapper.toCandidate(candidateRequestDto);
-            candidateService.save(candidate);
-        }
-
+    public ResponseEntity<CandidateResponseDto> save(@Valid @RequestBody CandidateRequestDto candidateRequestDto) {
+        Candidate candidate = candidateMapper.toCandidate(candidateRequestDto);
+        candidate.setCompany(companyService.findById(candidateRequestDto.getCompanyId()));
+        CandidateResponseDto candidateResponseDto = candidateMapper.toCandidateResponseDto(candidateService.save(candidate));
+            return new ResponseEntity<>(candidateResponseDto, HttpStatus.OK);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<CandidateResponseDto> update(@PathVariable("id") @NotBlank @Positive Long id, @Valid @RequestBody CandidateRequestDto candidateRequestDto) {

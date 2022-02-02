@@ -35,6 +35,13 @@ public class RecruiterController {
         RecruiterResponseDto recruiterResponseDto = recruiterMapper.toRecruiterResponseDto(recruiterService.findById(id));
         return new ResponseEntity<>(recruiterResponseDto, HttpStatus.OK);
     }
+
+    @PostMapping
+    public ResponseEntity<RecruiterResponseDto> save(@Valid @RequestBody RecruiterRequestDto recruiterRequestDto) {
+        final RecruiterResponseDto recruiterResponseDto = recruiterMapper.toRecruiterResponseDto(recruiterService.save(recruiterMapper.toRecruiter(recruiterRequestDto)));
+        return new ResponseEntity<>(recruiterResponseDto, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> delete(@PathVariable("id") Long id) {
         recruiterService.deleteById(id);

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface EngineerService {
-    void save(Engineer engineer);
+    Engineer save(Engineer engineer);
 
     void deleteById(Long id);
 

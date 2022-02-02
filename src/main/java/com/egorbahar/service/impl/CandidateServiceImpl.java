@@ -16,8 +16,8 @@ public class CandidateServiceImpl implements CandidateService {
     private final LocalMessageSource messageSource;
 
     @Override
-    public void save(Candidate candidate) {
-        candidateRepository.save(candidate);
+    public Candidate save(Candidate candidate) {
+      return candidateRepository.save(candidate);
     }
 
     @Override

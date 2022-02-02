@@ -12,6 +12,6 @@ public class CandidateResponseDto {
     private String name;
     private String surname;
     private String email;
-    private Long companyId;
-    private List<Long> vacancyId;
+    private String company;
+    private List<String> vacancyNameList;
 }

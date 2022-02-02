@@ -3,7 +3,9 @@ package com.egorbahar.mapper;
 import com.egorbahar.dto.request.CandidateRequestDto;
 import com.egorbahar.dto.response.CandidateResponseDto;
 import com.egorbahar.entity.Candidate;
-import org.mapstruct.*;
+import org.mapstruct.IterableMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,8 +13,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CandidateMapper {
     @Mapping(target = "id" , source = "id")
-    @Mapping(target = "companyId", source = "company.id")
-    @Mapping(target = "vacancyId", ignore = true)
+    @Mapping(target = "company", source = "company.name")
+    @Mapping(target = "vacancyNameList", ignore = true)
     CandidateResponseDto toCandidateResponseDto(Candidate candidate);
 
     @Mapping(target = "id" ,ignore = true)
@@ -20,12 +22,8 @@ public interface CandidateMapper {
     @Mapping(target = "candidateVacancies", ignore = true)
     Candidate toCandidate(CandidateRequestDto candidateRequestDto);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(target = "id", ignore = true)
-    void updateEntity(@MappingTarget Candidate candidate, CandidateRequestDto candidateRequestDto);
-
-    @Mapping(target = "companyId", source = "company.id")
-    @Mapping(target = "candidateVacancyId", source = "candidateVacancies")
     @IterableMapping(elementTargetType = CandidateResponseDto.class)
+    @Mapping(target = "company", source = "company.name")
+    @Mapping(target = "candidateVacancyId", source = "candidateVacancies")
     List<CandidateResponseDto> toCandidateResponseDtoList(Collection<Candidate> candidates);
 }

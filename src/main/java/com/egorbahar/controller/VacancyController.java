@@ -33,12 +33,15 @@ public class VacancyController {
     @GetMapping
     public ResponseEntity<List<VacancyResponseDto>> getAll() {
         List<VacancyResponseDto> vacancyResponseDtoList = vacancyMapper.toVacancyResponseDtoList(vacancyService.findAll());
+        vacancyResponseDtoList.forEach(vacancyResponseDto -> vacancyResponseDto.setPosition(Position.valueOf(vacancyResponseDto.getPosition()).getPosition()));
         return new ResponseEntity<>(vacancyResponseDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<VacancyResponseDto> getById(@PathVariable("id") @NotBlank @Positive Long id) {
         VacancyResponseDto vacancyResponseDto = vacancyMapper.toVacancyResponseDto(vacancyService.findById(id));
+        Position position = Position.valueOf(vacancyResponseDto.getPosition());
+        vacancyResponseDto.setPosition(position.getPosition());
         return new ResponseEntity<>(vacancyResponseDto, HttpStatus.OK);
     }
 
@@ -49,7 +52,7 @@ public class VacancyController {
     }
 
     @PostMapping
-    public void save(@Valid @RequestBody VacancyRequestDto vacancyRequestDto) {
+    public ResponseEntity<VacancyResponseDto> save(@Valid @RequestBody VacancyRequestDto vacancyRequestDto) {
         LocalDateTime localDateTime = LocalDateTime.now();
         List<Position> positionList = Arrays.asList(Position.values());
         Optional<Position> position = positionList.stream()
@@ -58,9 +61,10 @@ public class VacancyController {
         Vacancy vacancy = vacancyMapper.toVacancy(vacancyRequestDto);
         vacancy.setDate(localDateTime);
         vacancy.setPosition(position.get());// написать исключение
-        Department department = departmentService.findByName(vacancyRequestDto.getDepartmentName());
-       vacancy.setDepartment(department);
-        vacancyService.save(vacancy);
+        Department department = departmentService.findById(vacancyRequestDto.getDepartmentId());
+        vacancy.setDepartment(department);
+        final VacancyResponseDto vacancyResponseDto = vacancyMapper.toVacancyResponseDto(vacancyService.save(vacancy));
+        return new ResponseEntity<>(vacancyResponseDto, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

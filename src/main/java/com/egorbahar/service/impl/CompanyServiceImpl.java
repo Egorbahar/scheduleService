@@ -5,6 +5,7 @@ import com.egorbahar.entity.Company;
 import com.egorbahar.repository.CompanyRepository;
 import com.egorbahar.service.CompanyService;
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +17,9 @@ public class CompanyServiceImpl implements CompanyService {
     private final LocalMessageSource messageSource;
 
     @Override
-    public void save(Company company) {
-        companyRepository.save(company);
+
+    public Company save(Company company) {
+       return companyRepository.save(company);
     }
 
     @Override

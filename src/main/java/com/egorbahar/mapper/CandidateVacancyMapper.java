@@ -10,8 +10,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CandidateVacancyMapper {
-    @Mapping(target = "candidateId",source = "candidate.id" )
-    @Mapping(target = "vacancyId", source = "vacancy.id")
+    @Mapping(target = "candidate", expression = "java(candidateVacancy.getCandidate().getName() + \" \" + candidateVacancy.getCandidate().getSurname())" )
+    @Mapping(target = "vacancy", source = "vacancy.name")
     CandidateVacancyResponseDto toCandidateVacancyResponseDto(CandidateVacancy candidateVacancy);
 
     @Mapping(target = "candidate.id" , source = "candidateVacancyRequestDto.candidateId")

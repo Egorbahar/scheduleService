@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Schedule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <style>
+        #feedback {
+            color: red;
+        }
+        #bth-login, #bth-reg{
+            width:150px;
+            height:50px;
+            font-size: 20px;
+        }
+        button{
+            background: #F0FF9B;
+            border: solid #EBFFF6 0;
+            -webkit-border-radius: 31px;
+            -moz-border-radius: 31px;
+            border-radius: 31px;
+            text-decoration: none;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            /*height: 53px;*/
+            line-height: 3px;
+            color: #93c71f;
+            font-family: Open Sans;
+            width: 210px;
+            font-size: 23px;
+            font-weight: 100;
+            padding: 20px;
+            background-color: #EBFFF6;
+            border: solid #93c71f 1px;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 10px;
+        }
+        button:hover{
+            background: #F0FF9B;
+            border: solid #EBFFF6 0;
+            -webkit-border-radius: 31px;
+            -moz-border-radius: 31px;
+            border-radius: 31px;
+            text-decoration: none;
+        }
+        .header, #username-label, #password-label{
+            -webkit-border-radius: 11px;
+            -moz-border-radius: 11px;
+            border-radius: 11px;
+            /*height: 53px;*/
+            line-height: 3px;
+            color: #93c71f;
+            font-family: Open Sans;
+            font-weight: 100;
+            text-decoration: none;
+
+        }
+        #username-label, #password-label{
+            padding: 10px;
+            text-align: center;
+        }
+        .starter-template{
+            padding: 200px;
+            color: #93c71f;
+
+        }
+        .header{
+            margin: 30px;
+            background: rgba(240, 255, 155, 0.4);
+            background-size: 60px;
+        }
+        label {
+            background: rgba(240, 255, 155, 0.4);
+        }
+        body { background: url(http://www.norwichorthodoxchurch.org.uk/wp-content/uploads/2016/08/Elegant_Background-2.jpg);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" style="min-height: 500px">
+
+    <div class="starter-template">
+        <div class="header">
+        <h1 style="  font-family: Open Sans;
+            font-weight: 100; text-align: center;">Планирование обеседований</h1>
+        </div>
+
+        <form class="form-horizontal" id="login-form">
+            <div class="form-group form-group-lg">
+                <label class="col-sm-2 control-label" id="username-label">Username</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="username"/>
+                </div>
+            </div>
+
+            <div class="form-group form-group-lg">
+                <label class="col-sm-2 control-label" id="password-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" id="password"/>
+                </div>
+            </div>
+
+            <div class="form-group" id="buttons" align="center">
+                    <button type="submit" id="btn-login">Вход
+                    </button>
+            </div>
+        </form>
+
+        <div id="feedback" align="center"></div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="webjars/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

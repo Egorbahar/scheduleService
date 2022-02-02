@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Главное меню</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/sign_out.js"></script>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en"/>
+
+    <style>
+        #bth-recruiter, #bth-vacancy, #bth-engineer, #bth-department {
+            display: none;
+        }
+
+        #bth-recruiter, #bth-category, #bth-vacancy, #bth-engineer, #bth-department, #bth-candidate, #bth-schedule, #bth-company {
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+            /*height: 53px;*/
+            line-height: 3px;
+            color: #93c71f;
+            font-family: Open Sans;
+            width: 210px;
+            font-size: 23px;
+            font-weight: 100;
+            padding: 20px;
+            background-color: #EBFFF6;
+            border: solid #93c71f 1px;
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 10px;
+        }
+
+
+        #bth-recruiter:hover, #bth-category:hover, #bth-vacancy:hover, #bth-engineer:hover, #bth-department:hover, #bth-candidate:hover, #bth-schedule:hover, #bth-company:hover {
+            background: #F0FF9B;
+            border: solid #EBFFF6 0;
+            -webkit-border-radius: 31px;
+            -moz-border-radius: 31px;
+            border-radius: 31px;
+            text-decoration: none;
+        }
+
+        .form-group {
+            padding: 30px;
+            margin: 20px;
+        }
+
+        img {
+            height: 100px;
+            width: 100px;
+            display: table-column;
+            background-color: #EBFFF6;
+            margin: 40px;
+        }
+
+        button:hover img {
+            background: #F0FF9B;
+        }
+
+        img:hover {
+            background: #F0FF9B;
+        }
+
+        .navbar {
+            background-color: #93c71f;
+        }
+
+        .nav-item, .nav-link {
+            color: white;
+        }
+
+        .nav-link:hover {
+            color: #F0FF9B;
+        }
+
+        img#maker {
+            height: 100px;
+            width: 80px;
+            margin: 40px;
+        }
+
+        img#courses, img#types {
+            width: 120px;
+            margin-left: 30px;
+        }
+        body { background: url(http://www.norwichorthodoxchurch.org.uk/wp-content/uploads/2016/08/Elegant_Background-2.jpg);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg  static-top">
+    <div class="container">
+        <a class="navbar-brand" style="color: white; size: 16px;">Планирование обеседований</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="navbar-text" id="hello">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/" onclick="signOut()">Sign out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <form method="post" class="mt-5">
+        <div class="form-group" align="center">
+            <button type="button" id="bth-candidate"
+                    class="btn btn-primary btn-candidate">Кандидаты
+                <img src="candidate.png"/>
+            </button>
+            <button type="button" id="bth-vacancy"
+                    class="btn btn-primary btn-vacancy">Вакансии
+                <img src="vacancy.png"/>
+            </button>
+            <button type="button" id="bth-engineer"
+                    class="btn btn-primary btn-engineer">Инженеры
+                <img src="engineer.png"/>
+            </button>
+            <button type="button" id="bth-recruiter"
+                    class="btn btn-primary btn-recruiter">Рекрутеры
+                <img id="recruiter" src="recruiters.png"/>
+            </button>
+            <button type="button" id="bth-department"
+                    class="btn btn-primary btn-department">Отделы
+                <img id="department" src="departments.png"/>
+            </button>
+            <button type="button" id="bth-schedule"
+                    class="btn btn-primary btn-schedule">Расписание
+                <img id="schedule" src="schedule.png"/>
+            </button>
+            <button type="button" id="bth-company"
+                    class="btn btn-primary btn-company">Компании
+                <img id="company" src="company.png"/>
+            </button>
+            <button type="button" id="bth-category"
+                    class="btn btn-primary btn-category">Категории
+                <img id="category" src="category.png"/>
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

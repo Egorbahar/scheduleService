@@ -10,9 +10,13 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface EngineerMapper {
+    @Mapping(target = "position", source = "position.position")
+    @Mapping(target = "department", source = "department.name")
     EngineerResponseDto toEngineerResponseDto(Engineer engineer);
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "position", ignore = true)
+    @Mapping(target = "department" , ignore = true)
     Engineer toEngineer(EngineerRequestDto engineerRequestDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
@@ -20,5 +24,6 @@ public interface EngineerMapper {
     void updateEntity(@MappingTarget Engineer engineer, EngineerRequestDto engineerRequestDto);
 
     @IterableMapping(elementTargetType = EngineerResponseDto.class)
+    @Mapping(target = "department", source = "department.name")
     List<EngineerResponseDto> toEngineerResponseDtoList(Collection<Engineer> engineers);
 }

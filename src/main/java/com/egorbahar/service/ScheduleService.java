@@ -5,7 +5,7 @@ import com.egorbahar.entity.Schedule;
 import java.util.List;
 
 public interface ScheduleService {
-    void save(Schedule schedule);
+    Schedule save(Schedule schedule);
 
     void deleteById(Long id);
 
@@ -14,4 +14,8 @@ public interface ScheduleService {
     List<Schedule> findAll();
 
     Schedule findById(Long id);
+
+    List<Schedule> findByRecruiterId(Long id);
+
+    List<Schedule> findByEngineerId(Long id);
 }

@@ -1,6 +1,8 @@
 package com.egorbahar.controller;
 
 import com.egorbahar.dto.request.CategoryRequestDto;
+import com.egorbahar.dto.request.CategoryRequestDto;
+import com.egorbahar.dto.response.CategoryResponseDto;
 import com.egorbahar.dto.response.CategoryResponseDto;
 import com.egorbahar.entity.Category;
 import com.egorbahar.mapper.CategoryMapper;
@@ -41,9 +43,9 @@ public class CategoryController {
     }
 
     @PostMapping
-    public void save(@Valid @RequestBody CategoryRequestDto candidateRequestDto) {
-        Category category = categoryMapper.toCategory(candidateRequestDto);
-        categoryService.save(category);
+    public ResponseEntity<CategoryResponseDto> save(@Valid @RequestBody CategoryRequestDto categoryRequestDto) {
+        CategoryResponseDto categoryResponseDto = categoryMapper.toCategoryResponseDto(categoryService.save(categoryMapper.toCategory(categoryRequestDto)));
+        return new ResponseEntity<>(categoryResponseDto,HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

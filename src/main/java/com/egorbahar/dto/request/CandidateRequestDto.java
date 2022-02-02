@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Getter
 @Setter
@@ -13,8 +12,7 @@ public class CandidateRequestDto {
     private String name;
     @NotNull
     private String surname;
-    @NotNull
     private String email;
-    private String companyName;
-    private List<Long> vacancy_id;
+    @NotNull
+    private Long companyId;
 }

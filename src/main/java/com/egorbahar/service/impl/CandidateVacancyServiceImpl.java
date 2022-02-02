@@ -15,8 +15,8 @@ public class CandidateVacancyServiceImpl implements CandidateVacancyService {
     private final LocalMessageSource messageSource;
 
     @Override
-    public void save(CandidateVacancy candidateVacancy) {
-        candidateVacancyRepository.save(candidateVacancy);
+    public CandidateVacancy save(CandidateVacancy candidateVacancy) {
+        return candidateVacancyRepository.save(candidateVacancy);
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface CategoryService {
-    void save(Category category);
+    Category save(Category category);
 
     void deleteById(Long id);
 

@@ -19,10 +19,12 @@ public interface VacancyMapper {
     @Mapping(source = "vacancyRequestDto.name", target = "name")
     @Mapping(target = "date", ignore = true)
     @Mapping(target = "position", ignore = true)
+    @Mapping(target = "department" , ignore = true)
     Vacancy toVacancy(VacancyRequestDto vacancyRequestDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "department" , ignore = true)
     void updateEntity(@MappingTarget Vacancy vacancy, VacancyRequestDto vacancyDto);
 
     @Mapping(source = "id", target = "id")

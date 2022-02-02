@@ -6,6 +6,7 @@ import com.egorbahar.entity.Schedule;
 import com.egorbahar.mapper.ScheduleMapper;
 import com.egorbahar.service.ScheduleService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,20 +18,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/schedules")
+@Slf4j
 public class ScheduleController {
     private final ScheduleService scheduleService;
     private final ScheduleMapper scheduleMapper;
-
-    @GetMapping
-    public ResponseEntity<List<ScheduleResponseDto>> getAll() {
-        List<ScheduleResponseDto> scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findAll());
-        return new ResponseEntity<>(scheduleResponseDtoList, HttpStatus.OK);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ScheduleResponseDto> getById(@PathVariable("id") @NotBlank @Positive Long id) {
@@ -45,14 +42,15 @@ public class ScheduleController {
     }
 
     @PostMapping
-    public void save(@Valid @RequestBody ScheduleRequestDto scheduleRequestDto) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern( "MM.dd.yyyy" );
+    public ResponseEntity<ScheduleResponseDto> save(@Valid @RequestBody ScheduleRequestDto scheduleRequestDto) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM.dd.yyyy");
         LocalDate localDate = LocalDate.parse(scheduleRequestDto.getDate(), formatter );
         LocalTime localTime = LocalTime.parse(scheduleRequestDto.getTime());
         LocalDateTime localDateTime = LocalDateTime.of(localDate,localTime);
         Schedule schedule = scheduleMapper.toSchedule(scheduleRequestDto);
         schedule.setStartTime(localDateTime);
-        scheduleService.save(schedule);
+        final ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(scheduleService.save(schedule));
+        return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
@@ -62,5 +60,29 @@ public class ScheduleController {
         scheduleService.update(schedule);
         ScheduleResponseDto scheduleResponseDto = scheduleMapper.toScheduleResponseDto(schedule);
         return new ResponseEntity<>(scheduleResponseDto, HttpStatus.OK);
+    }
+    @GetMapping
+    public ResponseEntity<List<ScheduleResponseDto>> getSchedulesByRole( @RequestParam(required = false) String role,  @RequestParam(required = false) Long userId) {
+
+        List<ScheduleResponseDto> scheduleResponseDtoList = new ArrayList<>();
+
+        if (role != null)
+        {
+            switch (role) {
+                case "recruiter":
+                    scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findByRecruiterId(userId));
+                    break;
+                case "engineer":
+                    scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findByEngineerId(userId));
+                    break;
+            }
+        }
+        else {
+            scheduleResponseDtoList = scheduleMapper.toScheduleResponseDtoList(scheduleService.findAll());
+        }
+        scheduleResponseDtoList
+                .forEach(s -> s.setEndTime(LocalDateTime.parse(s.getStartTime()).plusMinutes(s.getDuration()).toString()));
+
+        return new ResponseEntity<>(scheduleResponseDtoList, HttpStatus.OK);
     }
 }

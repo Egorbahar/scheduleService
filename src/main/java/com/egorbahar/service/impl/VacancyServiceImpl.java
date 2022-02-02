@@ -16,8 +16,8 @@ public class VacancyServiceImpl implements VacancyService {
 
 
     @Override
-    public void save(Vacancy vacancy) {
-        vacancyRepository.save(vacancy);
+    public Vacancy save(Vacancy vacancy) {
+        return vacancyRepository.save(vacancy);
     }
 
     @Override

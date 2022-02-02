@@ -9,6 +9,7 @@ import com.egorbahar.dto.response.TokenRefreshResponseDto;
 import com.egorbahar.entity.RefreshToken;
 import com.egorbahar.entity.User;
 import com.egorbahar.exceptions.TokenRefreshException;
+import com.egorbahar.service.impl.EmailService;
 import com.egorbahar.service.impl.RefreshTokenService;
 import com.egorbahar.service.impl.UserService;
 import lombok.AllArgsConstructor;
@@ -21,30 +22,32 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/authentication")
 public class AuthorizationController {
     private final UserService userService;
     private final JwtProvider jwtProvider;
+    private final EmailService emailService;
     private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Valid RegistrationRequestDto registrationRequestDto) {
         User user = new User();
         user.setPassword(registrationRequestDto.getPassword());
-        user.setUsername(registrationRequestDto.getUserName());
+        user.setUsername(registrationRequestDto.getUsername());
         userService.save(user);
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/auth")
     public ResponseEntity<AuthorizationResponseDto> auth(@RequestBody AuthorizationRequestDto authorizationRequestDto) {
-        User user = userService.findByUserNameAndPassword(authorizationRequestDto.getUserName(), authorizationRequestDto.getPassword());
+        User user = userService.findByUserNameAndPassword(authorizationRequestDto.getUsername(), authorizationRequestDto.getPassword());
         String token = jwtProvider.generateToken(user.getUsername());
         RefreshToken refreshToken = refreshTokenService.createRefreshToken(user.getId());
-        return ResponseEntity.ok(new AuthorizationResponseDto(token,refreshToken.getToken()));
+        return ResponseEntity.ok(new AuthorizationResponseDto(token,refreshToken.getToken(), user.getRole().getName(), user.getId()));
     }
     @PostMapping("/auth/refreshtoken")
     public ResponseEntity<?> refreshToken(@RequestBody @Valid TokenRefreshRequestDto tokenRefreshRequestDto) {
